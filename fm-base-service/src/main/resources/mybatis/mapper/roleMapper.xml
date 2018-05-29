@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snill.fm.mapper.RoleMapper" >
+    <resultMap id="BaseResultMap" type="com.snill.fm.bean.base.Role" >
+
+        <id column="r_id" property="id" jdbcType="INTEGER" />
+        <result column="r_name" property="name" jdbcType="VARCHAR" />
+        <result column="r_code" property="code" jdbcType="INTEGER" />
+
+        <!-- 多对多关联映射：collection -->
+        <collection property="permissionList" ofType="com.snill.fm.bean.base.Permission">
+            <id column="p_id" property="id"/>
+            <result column="p_name" property="name" jdbcType="VARCHAR" />
+            <result column="p_code" property="code" jdbcType="VARCHAR" />
+            <result column="p_ptype" property="ptype" jdbcType="INTEGER" />
+            <result column="p_value" property="value" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        r.id as r_id, r.name as r_name, r.code as r_code,
+        p.id as p_id, p.name as p_name, p.code as p_code, p.ptype as p_ptype, p.value as p_value
+    </sql>
+
+    <select id="getRoleById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        from role r
+        LEFT JOIN role_2_prem rp ON r.id = rp.role_id
+        LEFT JOIN permission p ON rp.prem_id = p.id
+        where r.id = #{id}
+    </select>
+
+    <select id="getRoleList" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        from role r
+        LEFT JOIN role_2_prem rp ON r.id = rp.role_id
+        LEFT JOIN permission p ON rp.prem_id = p.id
+    </select>
+
+    <insert id="add" parameterType="com.snill.fm.bean.base.Role" >
+        INSERT INTO
+        role
+        (name, code)
+        VALUES
+        (#{name}, #{code})
+    </insert>
+
+
+    <update id="update" parameterType="com.snill.fm.bean.base.Role" >
+        UPDATE
+        role
+        SET
+        name = #{name},code = #{code}
+        WHERE
+        id = #{id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+        DELETE FROM
+        role
+        WHERE
+        id = #{id}
+    </delete>
+</mapper>

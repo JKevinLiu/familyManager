@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snill.fm.mapper.PermissionMapper" >
+    <resultMap id="BaseResultMap" type="com.snill.fm.bean.base.Permission" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="ptype" property="ptype" jdbcType="INTEGER" />
+        <result column="value" property="value" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <sql id="Base_Column_List" >
+        id, name, code, ptype, value
+    </sql>
+
+    <select id="getPermissionById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM permission
+        WHERE id = #{id}
+    </select>
+
+    <select id="getPermissionList" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM permission
+    </select>
+
+    <insert id="add" parameterType="com.snill.fm.bean.base.Permission" >
+        INSERT INTO
+        permission
+        (name, code, ptype, value)
+        VALUES
+        (#{name}, #{code}, #{ptype}, #{value})
+    </insert>
+
+
+    <update id="update" parameterType="com.snill.fm.bean.base.Permission" >
+        UPDATE
+        permission
+        SET
+        name = #{name},code = #{code},ptype = #{ptype},value = #{value}
+        WHERE
+        id = #{id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+        DELETE FROM
+        permission
+        WHERE
+        id = #{id}
+    </delete>
+</mapper>

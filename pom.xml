@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.snill</groupId>
+    <artifactId>fm</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>family manager</name>
+
+    <properties>
+        <jdk.version>1.8</jdk.version>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+        <org.mybatis.generator.version>1.3.2</org.mybatis.generator.version>
+        <mybatis.version>3.1.1</mybatis.version>
+        <mybatis-spring.version>1.2.0</mybatis-spring.version>
+        <dubbo.version>2.4.9</dubbo.version>
+        <zookeeper.version>3.4.5</zookeeper.version>
+        <zkclient.version>0.1</zkclient.version>
+        <com.alibaba.druid.version>0.2.6</com.alibaba.druid.version>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.1.RELEASE</version>
+    </parent>
+
+    <modules>
+        <module>fm-base-service-api</module>
+        <module>fm-base-service</module>
+        <module>fm-so-service-api</module>
+        <module>fm-so-service</module>
+        <module>fm-ams-service-api</module>
+        <module>fm-ams-service</module>
+        <module>fm-web</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+
+
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
