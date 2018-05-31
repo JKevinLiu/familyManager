@@ -3,30 +3,46 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="js/angular.min.js"></script>
     <script src="js/angular-route.min.js"></script>
-    <script src="js/index/index_module.js"></script>
-    <script src="js/index/index_route.js"></script>
-    <script src="js/index/index_controller.js"></script>
+    <script src="js/angular/module.js"></script>
+    <script src="js/angular/route.js"></script>
+    <script src="js/angular/factory.js"></script>
+    <script src="js/angular/service.js"></script>
+    <script src="js/angular/controller.js"></script>
 
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+    <link href="css/user.css" rel="stylesheet" type="text/css" />
 </head>
+
+
+<title>FAMILY MANAGER</title>
+
 
 <body ng-app="mainApp" class="ng-scope">
 
-<!-- 头部 -->
-<header id="head" class="ui-header ui-header-positive ui-border-b">
-    <h1>XXX系统</h1>
-</header>
 
-<div>
-    <div id="navigation" align="left" ng-controller="listController">
-        <ul ng-repeat="item in list" >
-            <li>
-                <a href="#view/{{item.id}}">{{item.title}}</a>
-            </li>
-        </ul>
+<div class="center">
+    <div>
+        <!-- 头部 -->
+        <header id="head" class="menu__header">
+            <h1 class="menu__header-title">FAMILY MANAGER !</h1>
+        </header>
     </div>
 
-    <div ng-view="" align="center">
+
+    <div>
+        <div class="left_navigation" ng-controller="userController">
+            <ul ng-repeat="permission in permissions" class="nav">
+                <li class="nav__item">
+                    <a href="#view/{{permission.code}}" class="nav__item-link">{{permission.name}}</a> <!-- mouseon nav__item-link is-active -->
+                </li>
+            </ul>
+        </div>
+
+        <div ng-view="" class="right_content">
+        </div>
+
     </div>
 </div>
 </body>
 </html>
+

@@ -1,0 +1,28 @@
+<div ng-controller="userController" class="smart-green">
+
+    <div class="page-header">
+        <a class="brand" href="#">用户信息</a>
+    </div>
+
+    <section class="panel">
+        <p class="avatar">
+            <img src="image/user.jpg" alt="" />
+        </p>
+        <h3>邮箱 :{{user.username}}</h3>
+        <p class="lead">
+            用户身份 :{{role.name}}
+        </p>
+        <p>
+            手机 :{{user.phone}}
+        </p>
+        <p>
+            地址 :{{user.address}}
+        </p>
+        <p class="tags">
+            <span class="tag">{{user.nickname}}</span>
+            <span class="tag">{{user.sex}}</span>
+            <span class="tag">{{user.age}}</span>
+        </p>
+    </section>
+
+</div>
