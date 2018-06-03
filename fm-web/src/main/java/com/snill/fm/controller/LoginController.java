@@ -1,7 +1,6 @@
 package com.snill.fm.controller;
 
-import com.snill.fm.bean.base.User;
-import com.snill.fm.bean.other.JsonResult;
+import com.snill.fm.jsonbean.JsonResult;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;

@@ -3,7 +3,7 @@ package com.snill.fm.controller;
 import java.util.List;
 
 
-import com.snill.fm.bean.other.JsonResult;
+import com.snill.fm.jsonbean.JsonResult;
 import com.snill.fm.bean.base.User;
 import com.snill.fm.service.UserService;
 
