@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/fm.iml" filepath="$PROJECT_DIR$/fm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fm-ams-service/fm-ams-service.iml" filepath="$PROJECT_DIR$/fm-ams-service/fm-ams-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fm-ams-service-api/fm-ams-service-api.iml" filepath="$PROJECT_DIR$/fm-ams-service-api/fm-ams-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fm-base-service/fm-base-service.iml" filepath="$PROJECT_DIR$/fm-base-service/fm-base-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fm-base-service-api/fm-base-service-api.iml" filepath="$PROJECT_DIR$/fm-base-service-api/fm-base-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fm-so-service/fm-so-service.iml" filepath="$PROJECT_DIR$/fm-so-service/fm-so-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fm-so-service-api/fm-so-service-api.iml" filepath="$PROJECT_DIR$/fm-so-service-api/fm-so-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fm-web/fm-web.iml" filepath="$PROJECT_DIR$/fm-web/fm-web.iml" />
+    </modules>
+  </component>
+</project>

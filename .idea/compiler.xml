@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="fm-ams-service" />
+        <module name="fm-ams-service-api" />
+        <module name="fm-base-service" />
+        <module name="fm-base-service-api" />
+        <module name="fm-so-service" />
+        <module name="fm-so-service-api" />
+        <module name="fm-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="fm" target="1.8" />
+      <module name="fm-ams-service" target="1.8" />
+      <module name="fm-ams-service-api" target="1.8" />
+      <module name="fm-base-service" target="1.8" />
+      <module name="fm-base-service-api" target="1.8" />
+      <module name="fm-so-service" target="1.8" />
+      <module name="fm-so-service-api" target="1.8" />
+      <module name="fm-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
