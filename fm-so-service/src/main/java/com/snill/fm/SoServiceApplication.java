@@ -16,13 +16,11 @@ import javax.sql.DataSource;
 
 @SpringBootApplication
 @MapperScan("com.snill.fm.mapper")
-// @ImportResource({"classpath:provider.xml"})
-public class SpringbootDemoApplication {
+public class SoServiceApplication {
     private static volatile boolean running = true;
 
-
     private static Logger log = Logger
-            .getLogger(SpringbootDemoApplication.class);
+            .getLogger(SoServiceApplication.class);
 
 
     // DataSource配置
@@ -56,12 +54,12 @@ public class SpringbootDemoApplication {
      * Main 方法启动项
      */
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootDemoApplication.class, args);
+        SpringApplication.run(SoServiceApplication.class, args);
         log.info("============= APP Start ON SpringBoot Success =============");
-        synchronized (SpringbootDemoApplication.class) {
+        synchronized (SoServiceApplication.class) {
             while (running) {
                 try {
-                    SpringbootDemoApplication.class.wait();
+                    SoServiceApplication.class.wait();
                 } catch (Throwable e) {
                 }
             }

@@ -1,4 +1,4 @@
-package com.snill.fm.bean.base;
+package com.snill.fm.bean;
 
 import java.io.Serializable;
 
@@ -7,7 +7,8 @@ public class Permission implements Serializable {
     private String name;
     private String code;
     private int ptype;
-    private String value;
+    private String url;
+    private String mapping;
 
     public int getId() {
         return id;
@@ -41,11 +42,19 @@ public class Permission implements Serializable {
         this.ptype = ptype;
     }
 
-    public String getValue() {
-        return value;
+    public String getUrl() {
+        return url;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getMapping() {
+        return mapping;
+    }
+
+    public void setMapping(String mapping) {
+        this.mapping = mapping;
     }
 }

@@ -1,6 +1,6 @@
 package com.snill.fm.service;
 
-import com.snill.fm.bean.base.User;
+import com.snill.fm.bean.User;
 
 import java.util.List;
 

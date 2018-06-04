@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.snill.fm.mapper.ProductMapper" >
+
+    <resultMap id="BaseResultMap" type="com.snill.fm.bean.Product" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result property="parentId" column="parent_id" jdbcType="INTEGER" />
+        <result property="code" column="code" jdbcType="VARCHAR" />
+        <result property="name" column="name" jdbcType="VARCHAR" />
+        <result property="description" column="description" jdbcType="VARCHAR" />
+        <result property="deleted" column="deleted" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, parent_id, code, name, description, deleted
+    </sql>
+
+    <select id="getProductById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM product
+        WHERE id = #{id}
+        and deleted = 0
+    </select>
+
+    <select id="getProductList" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM product
+        where deleted = 0
+    </select>
+
+    <insert id="add" parameterType="com.snill.fm.bean.Product" >
+        INSERT INTO
+        product
+        (parent_id, code, name, description)
+        VALUES
+        (#{parentId}, #{code}, #{name}, #{description})
+    </insert>
+
+    <update id="update" parameterType="com.snill.fm.bean.Product" >
+        UPDATE
+        product
+        SET
+        parent_id = #{parentId},
+        code = #{code},
+        name = #{name},
+        description = #{description}
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+        UPDATE
+        product
+        SET
+        deleted = 1
+        WHERE
+        id = #{id}
+    </delete>
+
+</mapper>

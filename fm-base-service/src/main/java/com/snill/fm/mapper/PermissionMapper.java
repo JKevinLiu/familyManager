@@ -1,6 +1,6 @@
 package com.snill.fm.mapper;
 
-import com.snill.fm.bean.base.Permission;
+import com.snill.fm.bean.Permission;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

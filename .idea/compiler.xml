@@ -13,6 +13,7 @@
         <module name="fm-so-service" />
         <module name="fm-so-service-api" />
         <module name="fm-web" />
+        <module name="mapper" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,9 +22,11 @@
       <module name="fm-ams-service-api" target="1.8" />
       <module name="fm-base-service" target="1.8" />
       <module name="fm-base-service-api" target="1.8" />
+      <module name="fm-mapper" target="1.5" />
       <module name="fm-so-service" target="1.8" />
       <module name="fm-so-service-api" target="1.8" />
       <module name="fm-web" target="1.8" />
+      <module name="mapper" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

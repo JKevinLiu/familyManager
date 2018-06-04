@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.snill.fm.mapper.PermissionMapper" >
-    <resultMap id="BaseResultMap" type="com.snill.fm.bean.base.Permission" >
+    <resultMap id="BaseResultMap" type="com.snill.fm.bean.Permission" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="code" property="code" jdbcType="VARCHAR" />
         <result column="ptype" property="ptype" jdbcType="INTEGER" />
-        <result column="value" property="value" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="mapping" property="mapping" jdbcType="VARCHAR" />
     </resultMap>
 
 
     <sql id="Base_Column_List" >
-        id, name, code, ptype, value
+        id, name, code, ptype, url, mapping
     </sql>
 
     <select id="getPermissionById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
@@ -27,20 +28,20 @@
         FROM permission
     </select>
 
-    <insert id="add" parameterType="com.snill.fm.bean.base.Permission" >
+    <insert id="add" parameterType="com.snill.fm.bean.Permission" >
         INSERT INTO
         permission
-        (name, code, ptype, value)
+        (name, code, ptype, url, mapping)
         VALUES
-        (#{name}, #{code}, #{ptype}, #{value})
+        (#{name}, #{code}, #{ptype}, #{url}, #{mapping})
     </insert>
 
 
-    <update id="update" parameterType="com.snill.fm.bean.base.Permission" >
+    <update id="update" parameterType="com.snill.fm.bean.Permission" >
         UPDATE
         permission
         SET
-        name = #{name},code = #{code},ptype = #{ptype},value = #{value}
+        name = #{name},code = #{code},ptype = #{ptype},url = #{url}, mapping = #{mapping}
         WHERE
         id = #{id}
     </update>

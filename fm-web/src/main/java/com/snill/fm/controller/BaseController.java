@@ -7,7 +7,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.snill.fm.bean.base.User;
+import com.snill.fm.bean.User;
 @RestController
 public class BaseController {
     @Reference

@@ -1,9 +1,9 @@
 package com.snill.fm.shiro;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.snill.fm.bean.base.Permission;
-import com.snill.fm.bean.base.Role;
-import com.snill.fm.bean.base.User;
+import com.snill.fm.bean.Permission;
+import com.snill.fm.bean.Role;
+import com.snill.fm.bean.User;
 import com.snill.fm.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

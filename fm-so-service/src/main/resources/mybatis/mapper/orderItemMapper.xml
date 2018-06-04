@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.snill.fm.mapper.OrderItemMapper" >
+    <resultMap id="BaseResultMap" type="com.snill.fm.bean.OrderItem" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result property="orderId" column="order_id" jdbcType="INTEGER" />
+        <result property="price" column="price" jdbcType="INTEGER" />
+        <result property="createDate" column="create_date" jdbcType="DATE" />
+        <result property="deleted" column="deleted" jdbcType="INTEGER" />
+
+        <association property="product" column="product_id" javaType="com.snill.fm.bean.Product" select="com.snill.fm.mapper.ProductMapper.getProductById" />
+    </resultMap>
+
+
+    <sql id="Base_Column_List" >
+        id, order_id, price, product_id, create_date, deleted
+    </sql>
+
+    <select id="getOrderItemById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM order_item
+        WHERE id = #{id}
+        and deleted = 1
+    </select>
+
+    <select id="getOrderItemList" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM order_item
+        where deleted = 1
+    </select>
+
+    <insert id="add" parameterType="com.snill.fm.bean.OrderItem" >
+        INSERT INTO
+        order_item
+        (order_id, price, product_id, create_date)
+        VALUES
+        (#{orderId}, #{code}, #{product.id}, #{createDate})
+    </insert>
+
+
+    <update id="update" parameterType="com.snill.fm.bean.OrderItem" >
+        UPDATE
+        order_item
+        SET
+        order_id = #{orderId},
+        price = #{price},
+        product_id = #{product.id},
+        create_date = #{createDate}
+        WHERE
+        id = #{id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+        UPDATE
+        order_item
+        SET
+        deleted = 1
+        WHERE
+        id = #{id}
+    </delete>
+
+</mapper>

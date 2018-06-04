@@ -4,7 +4,7 @@ import java.util.List;
 
 
 import com.snill.fm.jsonbean.JsonResult;
-import com.snill.fm.bean.base.User;
+import com.snill.fm.bean.User;
 import com.snill.fm.service.UserService;
 
 

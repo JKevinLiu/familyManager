@@ -1,10 +1,13 @@
-package com.snill.fm.service;
+package com.snill.fm.mapper;
 
 import com.snill.fm.bean.OrderItem;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface OrderItemService {
+@Repository
+public interface OrderItemMapper {
+
     public OrderItem getOrderItemById(Integer id);
     public List<OrderItem> getOrderItemList();
     public int add(OrderItem orderItem);

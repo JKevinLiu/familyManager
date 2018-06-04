@@ -1,4 +1,6 @@
-package com.snill.fm.bean.base;
+package com.snill.fm.bean;
+
+import com.snill.fm.bean.Role;
 
 import java.io.Serializable;
 

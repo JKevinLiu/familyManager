@@ -1,7 +1,7 @@
 package com.snill.fm.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.snill.fm.bean.base.User;
+import com.snill.fm.bean.User;
 import com.snill.fm.mapper.UserMapper;
 import com.snill.fm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
