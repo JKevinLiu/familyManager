@@ -22,6 +22,14 @@
         WHERE id = #{id}
     </select>
 
+    <select id="getPermissionByCode" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM permission
+        WHERE code = #{code}
+    </select>
+
+
     <select id="getPermissionList" resultMap="BaseResultMap"  >
         SELECT
         <include refid="Base_Column_List" />

@@ -2,7 +2,7 @@ package com.snill.fm.bean;
 
 import java.io.Serializable;
 
-public class Permission implements Serializable {
+public class Permission implements Serializable, org.apache.shiro.authz.Permission {
     private int id;
     private String name;
     private String code;
@@ -56,5 +56,19 @@ public class Permission implements Serializable {
 
     public void setMapping(String mapping) {
         this.mapping = mapping;
+    }
+
+    @Override
+    public boolean implies(org.apache.shiro.authz.Permission p) {
+        if(this.code == null || "".equals(this.code)){
+            return false;
+        }
+
+        if(p instanceof Permission){
+            Permission auth = (Permission)p;
+            return this.code.equals(auth.getCode());
+        }
+
+        return false;
     }
 }

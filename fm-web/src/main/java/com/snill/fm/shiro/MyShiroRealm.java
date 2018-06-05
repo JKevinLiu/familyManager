@@ -30,7 +30,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 
         //添加角色
         simpleAuthorizationInfo.addRole(role.getCode());
-        for (Permission permission:role.getPermissionList()) {
+        for (Permission permission : role.getPermissionList()) {
             //添加权限
             simpleAuthorizationInfo.addStringPermission(permission.getCode());
         }
