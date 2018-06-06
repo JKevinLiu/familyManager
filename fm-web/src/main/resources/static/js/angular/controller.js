@@ -13,11 +13,10 @@ mainApp.controller("initController", ["$rootScope", "userService", function($roo
 }]);
 
 mainApp.controller("viewController", ["$scope", "$routeParams", function($scope, $routeParams) {
-    //var code = $routeParams.code;
-    //alert("url : " + code);
+    $scope.code = $routeParams.code;
 }]);
 
-mainApp.controller("orderController", ["$scope","$http", function($scope, $http) {
+mainApp.controller("orderController", ["$scope","$http", "$location", function($scope, $http, $location) {
     $http.get("order/list").then(
         function (res) {
             $scope.orders = res.data.result;
@@ -29,7 +28,7 @@ mainApp.controller("orderController", ["$scope","$http", function($scope, $http)
     );
 
     $scope.add = function(){
-        alert("add");
+        $location.path("subnav/add_order");
     };
 
     $scope.del = function(){
@@ -39,6 +38,30 @@ mainApp.controller("orderController", ["$scope","$http", function($scope, $http)
     $scope.query = function(){
         alert("query");
     }
+}]);
 
+mainApp.controller("orderOptionController", ["$scope", "$routeParams", function($scope, $routeParams) {
+    $scope.option = $routeParams.option;
+
+    //定义数组
+    $scope.items = [];
+
+    //添加的方法
+    $scope.add = function(){
+        //创建对象
+        var item = {
+            "aliasName" : $scope.alias_select,
+            "productName" : $scope.product_select,
+            "price" : $scope.price,
+            "remark" : $scope.remark
+        }
+        //放进数组
+        $scope.items.push(item);
+    }
+
+    //删除一行
+    $scope.dele =function($index){
+        $scope.items.splice($index, 1);
+    }
 }]);
 
