@@ -1,0 +1,52 @@
+.order_options_panel {
+    background: #D2E9FF;
+    padding: 20px 20px 20px 20px;
+    color: #666;
+}
+
+.order_options_title {
+    padding-bottom: 12px;
+}
+
+.order_options_title h1 {
+    display: block;
+    background: #C0E1FF;
+    border-bottom: 1px solid #B8DDFF;
+}
+
+
+.order_options_form label {
+    display: block;
+    margin: 0px 0px 5px;
+}
+
+.order_options_form label>span {
+    float: left;
+    width: 20%;
+    text-align: right;
+    padding-right: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.order_options_form input[type="text"],
+.order_options_form textarea,
+.order_options_form select {
+    color: #888;
+    width: 30%;
+    padding: 0px 0px 0px 5px;
+    border: 1px solid #C5E2FF;
+    background: #FBFBFB;
+    outline: 0;
+    box-shadow: inset 0px 1px 6px #ECF3F5;
+    font: 200 12px/25px Arial, Helvetica, sans-serif;
+    height: 30px;
+    line-height:15px;
+    margin: 2px 6px 16px 0px;
+}
+
+.order_options_form textarea{
+    height:100px;
+    padding: 5px 0px 0px 5px;
+    width: 70%;
+}

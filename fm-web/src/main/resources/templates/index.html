@@ -7,36 +7,39 @@
     <link href="css/index.css" rel="stylesheet" type="text/css" />
     <link href="css/user.css" rel="stylesheet" type="text/css" />
     <link href="css/order.css" rel="stylesheet" type="text/css" />
+    <link href="css/order_options.css" rel="stylesheet" type="text/css" />
 </head>
 
 
-<title>FAMILY MANAGER</title>
+<title>家庭收支管理系统</title>
 
 
-<body ng-app="mainApp" class="ng-scope" ng-controller="initController">
-
-
-<div class="center">
-    <div>
+<body  ng-app="mainApp" ng-controller="initController">
+<div class="mainpanel">
+    <div class="top_panel">
         <!-- 头部 -->
-        <header id="head" class="menu__header">
-            <h1 class="menu__header-title">FAMILY MANAGER !</h1>
+        <header id="head" class="top_header">
+            <h1 class="top_header-title">家庭收支管理系统</h1>
         </header>
     </div>
 
 
-    <div>
-        <div class="left_navigation">
-            <ul ng-repeat="permission in permissions" class="nav">
-                <li class="nav__item">
-                    <a href="#nav/{{permission.code}}" class="nav__item-link">{{permission.name}}</a> <!-- mouseon nav__item-link is-active -->
+    <div class="center_panel">
+        <nav class="left_navigation">
+            <ul ng-repeat="permission in permissions" class="nav_ul">
+                <li class="nav_li">
+                    <a href="#nav/{{permission.code}}" class="nav_li-link">{{permission.name}}</a>
                 </li>
             </ul>
-        </div>
+        </nav>
+
 
         <div ng-view="" class="right_content">
         </div>
+    </div>
 
+    <div class="footer_panel">
+        this is footer
     </div>
 </div>
 

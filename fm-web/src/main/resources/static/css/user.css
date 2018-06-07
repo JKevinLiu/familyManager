@@ -1,33 +1,26 @@
-.smart-green {
-    padding: 30px 30px 20px 30px;
-    background: linear-gradient(135deg, #3023AE, #C86DD7);
-    background-attachment: fixed;
-    /* 顺便加个字体吧 */
-    font-size: 15px;
-    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei;
-    height:90%;
-}
-
-
-
-
 *{
     margin: 0;
 }
-.page-header {
+
+.user_panel {
+    background: linear-gradient(135deg, #3023AE, #C86DD7);
+    background-attachment: fixed;
+    font-size: 15px;
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei;
+    height: 100%;
+}
+
+.user_header {
     padding: 20px 30px;
     overflow: hidden;
 }
-.page-header .brand{
+.user_header .brand{
     color: white;
     text-decoration: none;
     float: left;
 }
 
-
-
-
-.panel {
+.info_panel {
     margin: 120px auto 60px;
     text-align: center;
     background-color: white;
@@ -36,12 +29,12 @@
     padding: 1px;
     transition: box-shadow .30s;
 }
-.panel:hover{
+.info_panel:hover{
     box-shadow: #fff 5px 5px 25px;
 }
 
 
-.avatar img {
+.tx img {
     width: 120px;
     height: 120px;
     border-radius: 60px;
@@ -49,7 +42,7 @@
 }
 
 
-h3 {
+.email {
     font-weight: bold;
     font-size: 16px;
     margin: 15px 0 20px;
