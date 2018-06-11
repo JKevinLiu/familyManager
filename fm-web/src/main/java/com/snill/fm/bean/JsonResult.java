@@ -1,4 +1,4 @@
-package com.snill.fm.jsonbean;
+package com.snill.fm.bean;
 
 import java.io.Serializable;
 

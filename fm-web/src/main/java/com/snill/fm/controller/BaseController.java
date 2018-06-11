@@ -1,7 +1,7 @@
 package com.snill.fm.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.snill.fm.jsonbean.JsonResult;
+import com.snill.fm.bean.JsonResult;
 import com.snill.fm.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.http.ResponseEntity;

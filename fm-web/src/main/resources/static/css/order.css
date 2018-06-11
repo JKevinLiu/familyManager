@@ -26,6 +26,8 @@
     border-width: 1px;
     border-color: #a9c6c9;
     border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
 }
 
 .order_table th {

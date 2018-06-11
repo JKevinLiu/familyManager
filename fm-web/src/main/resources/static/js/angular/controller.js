@@ -13,7 +13,7 @@ mainApp.controller("initController", ["$rootScope", "userService", function($roo
 }]);
 
 mainApp.controller("viewController", ["$scope", "$routeParams", function($scope, $routeParams) {
-    $scope.code = $routeParams.code;
+    //$scope.code = $routeParams.code;
 }]);
 
 mainApp.controller("orderController", ["$scope","$http", "$location", function($scope, $http, $location) {
@@ -63,5 +63,45 @@ mainApp.controller("orderOptionController", ["$scope", "$routeParams", function(
     $scope.dele =function($index){
         $scope.items.splice($index, 1);
     }
+}]);
+
+
+mainApp.controller("productController", ["$scope", "$http", function($scope, $http) {
+    $scope.right_title = "添加产品";
+
+    $scope.getAilas = function(){
+        $http.get("product/alias").then(
+            function(res){
+                $scope.alias = res.data.result;
+            },function(res){
+                //fail
+                alert(res.data.desc);
+            }
+        );
+    };
+
+    $scope.getAliasAndchilren = function(aliasId){
+        if(aliasId == null){
+            $scope.aliasAndchilren = [];
+            return;
+        }
+        $http.get("product/" + aliasId + "/AliaAndChildren").then(
+            function(res){
+                $scope.aliasAndchilren = res.data.result;
+            },function(res){
+                alert(res.data.desc);
+            }
+        );
+    }
+
+    $scope.change = function(){
+        $scope.getAliasAndchilren($scope.left_alias_select);
+    }
+
+    $scope.editProduct = function(product){
+        $scope.right_title = "修改产品";
+    }
+
+    $scope.getAilas();
 }]);
 

@@ -1,0 +1,20 @@
+<div>
+    <p>
+    <span>
+      总记录数：<span class="rjAllNums" ng-bind="page.totalCount"></span>
+      本页记录数：<span class="rjNowNums" ng-bind="page.curCount"></span>
+    </span>
+        <button class="rjFirtPage" ng-click="jumpPage(1)">首页</button>
+        <button class="rjPrePage" ng-click="jumpPage(page.curNo - 1)">上一页</button>
+        <span>
+      <span class="rjNowPage" ng-bind="page.curNo"></span>/
+      <span class="rjAllPage" ng-bind="page.pageCount"></span>
+    </span>
+        <button class="rjNextPage" ng-click="jumpPage(page.curNo + 1)">下一页</button>
+        <button class="rjLastPage" ng-click="jumpPage(page.pageCount)">尾页</button>
+        到第
+        <input class="rjJumpInput" type="text" ng-model="gotoPage" name="rjPageName" value=""/>
+        页
+        <button class="rjJumpBtn" ng-click="jumpPage()">确定</button>
+    </p>
+</div>

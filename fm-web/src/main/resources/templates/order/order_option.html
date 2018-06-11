@@ -1,87 +1,97 @@
 <div class="order_options_panel">
 
-    <a href="#nav/order_info">返回</a>
-
-    <div class="order_options_title">
-        <h1>添加收支</h1>
+    <div class="top_order_options_panel">
+        <a href="#nav/order_info" class="order_options_a">返回</a>
     </div>
 
 
-    <div class="order_options_form">
-        <label>
-            <span>大类：</span>
-        </label>
+    <div class="center_order_options_panel">
+        <div class="order_options_title">
+            <h1>添加收支</h1>
+        </div>
 
-        <select ng-model="alias_select">
-            <option value=""></option>
-            <option value="dogs">Dogs1</option>
-            <option value="tuts">Tutorials1</option>
-            <option value="cars">Cars1</option>
-        </select>
+        <div class="order_options_form">
+            <label>
+                <span>大类：</span>
+            </label>
 
-        <label>
-            <span>小类：</span>
-        </label>
-        <select ng-model="product_select">
-            <option value=""></option>
-            <option value="dogs">Dogs2</option>
-            <option value="tuts">Tutorials2</option>
-            <option value="cars">Cars2</option>
-        </select>
+            <select ng-model="alias_select">
+                <option value=""></option>
+                <option value="dogs">Dogs1</option>
+                <option value="tuts">Tutorials1</option>
+                <option value="cars">Cars1</option>
+            </select>
 
-        <label>
-            <span>产品描述：</span>
-        </label>
-        <textarea rows="3" cols="20" ng-model="product_desc"/>
+            <label>
+                <span>小类：</span>
+            </label>
+            <select ng-model="product_select">
+                <option value=""></option>
+                <option value="dogs">Dogs2</option>
+                <option value="tuts">Tutorials2</option>
+                <option value="cars">Cars2</option>
+            </select>
 
-        <label>
-            <span>价格：</span>
-        </label>
-        <input type="text" ng-model="price" />
+            <label>
+                <span>产品描述：</span>
+            </label>
+            <textarea rows="2" cols="20" ng-model="product_desc">
+	        </textarea>
 
-        <label>
-            <span>备注：</span>
-        </label>
-        <input type="text" ng-model="remark" />
+            <label>
+                <span>价格：</span>
+            </label>
+            <input type="text" ng-model="price" />
 
-        <div class="buttons">
-            <button class="order_button" ng-click="add()">添加</button>
+            <label>
+                <span>备注：</span>
+            </label>
+            <input type="text" ng-model="remark" />
+
+            <div class="buttons">
+                <button class="order_button" ng-click="add()">添加</button>
+            </div>
         </div>
     </div>
 
-    <table width="90%"  class="order_table" >
-        <thead class="oddrowcolor">
-        <th width="10%">序号</th>
-        <th width="15%">产品大类</th>
-        <th width="15%">产品小类</th>
-        <th width="20%">价格</th>
-        <th width="30%">备注</th>
-        <th width="10%">操作</th>
-        </thead>
 
-        <tr ng-repeat="item in items">
-            <td ng-if="$odd" class="oddrowcolor"><input type="checkbox" name="ck" ng-click="ck($index)" /></td>
-            <td ng-if="$odd" class="oddrowcolor">{{item.aliasName}}</td>
-            <td ng-if="$odd" class="oddrowcolor">{{item.productName}}</td>
-            <td ng-if="$odd" class="oddrowcolor">{{item.price}}</td>
-            <td ng-if="$odd" class="oddrowcolor">{{item.remark}}</td>
-            <td ng-if="$odd" class="oddrowcolor"><input type="button" ng-click="dele($index)" value="删除"/></td>
+    <div class="footer_order_options_panel">
 
-            <td ng-if="$even" class="evenrowcolor"><input type="checkbox" name="ck" ng-click="ck($index)"/></td>
-            <td ng-if="$even" class="evenrowcolor">{{item.aliasName}}</td>
-            <td ng-if="$even" class="evenrowcolor">{{item.productName}}</td>
-            <td ng-if="$even" class="evenrowcolor">{{item.price}}</td>
-            <td ng-if="$even" class="evenrowcolor">{{item.remark}}</td>
-            <td ng-if="$even" class="evenrowcolor"><input type="button" ng-click="dele($index)" value="删除"/></td>
-        </tr>
+        <div class="center_table">
+            <table width="90%"  class="order_table" >
+                <thead class="oddrowcolor">
+                <th width="10%">序号</th>
+                <th width="15%">产品大类</th>
+                <th width="15%">产品小类</th>
+                <th width="20%">价格</th>
+                <th width="30%">备注</th>
+                <th width="10%">操作</th>
+                </thead>
 
-    </table>
+                <tr ng-repeat="item in items">
+                    <td ng-if="$odd" class="oddrowcolor"><input type="checkbox" name="ck" ng-click="ck($index)" /></td>
+                    <td ng-if="$odd" class="oddrowcolor">{{item.aliasName}}</td>
+                    <td ng-if="$odd" class="oddrowcolor">{{item.productName}}</td>
+                    <td ng-if="$odd" class="oddrowcolor">{{item.price}}</td>
+                    <td ng-if="$odd" class="oddrowcolor">{{item.remark}}</td>
+                    <td ng-if="$odd" class="oddrowcolor"><input type="button" ng-click="dele($index)" value="删除"/></td>
+
+                    <td ng-if="$even" class="evenrowcolor"><input type="checkbox" name="ck" ng-click="ck($index)"/></td>
+                    <td ng-if="$even" class="evenrowcolor">{{item.aliasName}}</td>
+                    <td ng-if="$even" class="evenrowcolor">{{item.productName}}</td>
+                    <td ng-if="$even" class="evenrowcolor">{{item.price}}</td>
+                    <td ng-if="$even" class="evenrowcolor">{{item.remark}}</td>
+                    <td ng-if="$even" class="evenrowcolor"><input type="button" ng-click="dele($index)" value="删除"/></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="buttons">
+            <button class="order_button" ng-click="commit()">提交</button>
+            <button class="order_button" ng-click="reset()">清空</button>
+        </div>
 
 
-    <div class="buttons">
-        <button class="order_button" ng-click="commit()">提交</button>
-        <button class="order_button" ng-click="reset()">清空</button>
     </div>
-
 
 </div>
