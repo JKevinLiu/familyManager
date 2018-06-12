@@ -15,35 +15,38 @@
                 </label>
 
                 <select ng-model="left_alias_select" ng-change="change()">
-                    <option value="">请选择...</option>
+                    <option value="-1">请选择...</option>
                     <option ng-repeat="product in alias" value="{{product.id}}">{{product.name}}</option>
                 </select>
             </div>
 
             <!--  query table -->
             <div class="center_table">
-                <table class="order_table">
+                <table class="order_table" name="product_table">
                     <thead class="oddrowcolor">
                     <th width="10%">编辑</th>
-                    <th width="15%">产品ID</th>
+                    <th width="10%">产品ID</th>
                     <th width="15%">产品编码</th>
                     <th width="20%">产品名称</th>
+                    <th width="5%">操作</th>
                     </thead>
 
                     <tr ng-repeat="product in aliasAndchilren">
                         <td ng-if="$odd" class="oddrowcolor">
-                            <input type="checkbox"  name="ck_product" ng-click="editProduct(product)" />
+                            <input type="checkbox"  name="ck_product" ng-click="editProduct(product, $index)" />
                         </td>
                         <td ng-if="$odd" class="oddrowcolor">{{product.id}}</td>
                         <td ng-if="$odd" class="oddrowcolor">{{product.code}}</td>
                         <td ng-if="$odd" class="oddrowcolor">{{product.name}}</td>
+                        <td ng-if="$odd" class="oddrowcolor"><input type="button" ng-click="del(product.id)" value="删除"/></td>
 
                         <td ng-if="$even" class="evenrowcolor">
-                            <input type="checkbox"  name="ck_product" ng-click="editProduct(product)"/>
+                            <input type="checkbox"  name="ck_product" ng-click="editProduct(product, $index)"/>
                         </td>
                         <td ng-if="$even" class="evenrowcolor">{{product.id}}</td>
                         <td ng-if="$even" class="evenrowcolor">{{product.code}}</td>
                         <td ng-if="$even" class="evenrowcolor">{{product.name}}</td>
+                        <td ng-if="$even" class="evenrowcolor"><input type="button" ng-click="del(product.id)" value="删除"/></td>
                     </tr>
                 </table>
             </div>
@@ -59,27 +62,35 @@
                     <span>产品编码：</span>
                 </label>
 
-                <input type="text" ng-model="code" />
+                <input type="text" ng-model="show_product.code" name="right_product_code" required="required" />
+                <span ng-show="right_product_code.$error.required">产品编码不能为空！</span>
+                    <span style="color:red" ng-show="right_product_code.$dirty &amp;&amp; right_product_code.$invalid">
+                </span>
 
                 <label>
                     <span>产品名称：</span>
                 </label>
 
-                <input type="text" ng-model="name" />
+                <input type="text" ng-model="show_product.name" name="right_product_name" required="required" />
+                <span ng-show="right_product_name.$error.required">产品名称不能为空！</span>
+                    <span style="color:red" ng-show="right_product_name.$dirty &amp;&amp; right_product_name.$invalid">
+                </span>
 
                 <label>
                     <span>收支类型：</span>
                 </label>
 
-                <select ng-model="right_alias_select">
-                    <option value="">请选择...</option>
-                    <option ng-repeat="product in alias">{{product.name}}</option>
+                <select ng-model="right_alias_select" ng-disabled="!right_alias_select_edit">
+                    <option value="-1">请选择...</option>
+                    <option ng-repeat="product in alias" value="{{product.id}}">{{product.name}}</option>
                 </select>
 
             </div>
 
             <div class="buttons">
-                <button class="order_button" ng-click="commit()">提交</button>
+                <button class="order_button" ng-click="commit()"
+                        ng-disabled="right_product_name.$dirty &amp;&amp; right_product_name.$invalid || right_product_code.$dirty &amp;&amp; right_product_code.$invalid"
+                >提交</button>
             </div>
         </div>
     </div>
