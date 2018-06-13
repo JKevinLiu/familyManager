@@ -57,14 +57,15 @@
             <header id="head" class="product_title">
                 <h1 class="top_header-title">{{right_title}}</h1>
             </header>
-            <div>
+
+            <form name="productForm" novalidate="novalidate">
                 <label>
                     <span>产品编码：</span>
                 </label>
 
                 <input type="text" ng-model="show_product.code" name="right_product_code" required="required" />
-                <span ng-show="right_product_code.$error.required">产品编码不能为空！</span>
-                    <span style="color:red" ng-show="right_product_code.$dirty &amp;&amp; right_product_code.$invalid">
+                <span style="color:red" ng-show="productForm.right_product_code.$dirty &amp;&amp; productForm.right_product_code.$invalid">
+                    <span ng-show="productForm.right_product_code.$error.required">产品编码不能为空！</span>
                 </span>
 
                 <label>
@@ -72,8 +73,8 @@
                 </label>
 
                 <input type="text" ng-model="show_product.name" name="right_product_name" required="required" />
-                <span ng-show="right_product_name.$error.required">产品名称不能为空！</span>
-                    <span style="color:red" ng-show="right_product_name.$dirty &amp;&amp; right_product_name.$invalid">
+                <span style="color:red" ng-show="productForm.right_product_name.$dirty &amp;&amp; productForm.right_product_name.$invalid">
+                    <span ng-show="productForm.right_product_name.$error.required">产品名称不能为空！</span>
                 </span>
 
                 <label>
@@ -85,13 +86,14 @@
                     <option ng-repeat="product in alias" value="{{product.id}}">{{product.name}}</option>
                 </select>
 
-            </div>
+                <div class="buttons">
+                    <button class="order_button" ng-click="commit()"
+                            ng-disabled = "productForm.right_product_code.$dirty &amp;&amp; productForm.right_product_code.$invalid
+                             || productForm.right_product_name.$dirty &amp;&amp; productForm.right_product_name.$invalid"
+                    >提交</button>
+                </div>
 
-            <div class="buttons">
-                <button class="order_button" ng-click="commit()"
-                        ng-disabled="right_product_name.$dirty &amp;&amp; right_product_name.$invalid || right_product_code.$dirty &amp;&amp; right_product_code.$invalid"
-                >提交</button>
-            </div>
+            </form>
         </div>
     </div>
 

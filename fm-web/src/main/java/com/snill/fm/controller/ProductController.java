@@ -5,10 +5,7 @@ import com.snill.fm.bean.JsonResult;
 import com.snill.fm.bean.Product;
 import com.snill.fm.service.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -63,12 +60,12 @@ public class ProductController {
         return ResponseEntity.ok(r);
     }
 
-    @RequestMapping(value = "product/save", method = RequestMethod.PUT)
-    public ResponseEntity<JsonResult> addProduct(Product product){
+    @RequestMapping(value = "product/save", method = RequestMethod.POST)
+    public ResponseEntity<JsonResult> addProduct(@RequestBody Product product){
         JsonResult r = new JsonResult();
         try {
-            int id = productService.save(product);
-            r.setResult(id);
+            int ret = productService.save(product);
+            r.setResult("保存成功！");
             r.setStatus("ok");
         } catch (Exception e) {
             r.setResult(e.getClass().getName() + ":" + e.getMessage());
@@ -78,12 +75,12 @@ public class ProductController {
         return ResponseEntity.ok(r);
     }
 
-    @RequestMapping(value = "product/del", method = RequestMethod.DELETE)
-    public ResponseEntity<JsonResult> delProduct(Integer id){
+    @RequestMapping(value = "product/{id}/del", method = RequestMethod.DELETE)
+    public ResponseEntity<JsonResult> delProduct(@PathVariable("id") Integer id){
         JsonResult r = new JsonResult();
         try {
-            productService.delete(id);
-            r.setResult(id);
+            int ret = productService.delete(id);
+            r.setResult("删除成功");
             r.setStatus("ok");
         } catch (Exception e) {
             r.setResult(e.getClass().getName() + ":" + e.getMessage());

@@ -36,7 +36,29 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public int save(Product product) {
+        if(product == null){
+            throw new IllegalArgumentException("产品信息为空！");
+        }
+        if(product.getCode() == null || "".equalsIgnoreCase(product.getCode().trim())){
+            throw new IllegalArgumentException("产品编码不能为空！");
+        }
+
+        if(product.getName() == null || "".equalsIgnoreCase(product.getName().trim())){
+            throw new IllegalArgumentException("产品名称不能为空！");
+        }
+
+        //默认为大类
+        if(product.getParentId() == 0){
+            product.setParentId(-1);
+        }
+
         if(product.getId() == 0){
+            //检查唯一性
+            Product hasProduct = productMapper.getProductByCode(product.getCode());
+            if(hasProduct != null){
+                throw new IllegalArgumentException("产品编码已存在！");
+            }
+
             return productMapper.add(product);
         }
         return productMapper.update(product);

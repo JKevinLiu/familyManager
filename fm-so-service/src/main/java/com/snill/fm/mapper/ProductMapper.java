@@ -20,5 +20,5 @@ public interface ProductMapper {
     public int delete(Integer id);
     public List<Product> getProductsByParentId(int parentId);
     public List<Product> getAliaAndChildren(Integer id);
-
+    public Product getProductByCode(String code);
 }

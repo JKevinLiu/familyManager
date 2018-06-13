@@ -76,13 +76,9 @@ mainApp.controller("orderOptionController", ["$scope", "$routeParams", function(
 }]);
 
 
-
-
 mainApp.controller("productController", ["$scope", "$http", function($scope, $http) {
     $scope.right_title = "添加产品";
-    $scope.show_product = [];
-    $scope.right_product_code = "";
-    $scope.right_product_name = "";
+    $scope.show_product = {};
     $scope.right_alias_select_edit = true;
     $scope.left_alias_select = "-1";
     $scope.right_alias_select = "-1";
@@ -100,6 +96,8 @@ mainApp.controller("productController", ["$scope", "$http", function($scope, $ht
 
 
     $scope.getAliasAndchilren = function(aliasId){
+        $scope.show_product = {};
+
         if(aliasId == null){
             $scope.aliasAndchilren = [];
             return;
@@ -148,7 +146,7 @@ mainApp.controller("productController", ["$scope", "$http", function($scope, $ht
             return;
         }
 
-        $scope.show_product = [];
+        $scope.show_product = {};
         $scope.right_alias_select = "-1";
         $scope.right_title = "添加产品";
         $scope.right_alias_select_edit = true;
@@ -156,7 +154,12 @@ mainApp.controller("productController", ["$scope", "$http", function($scope, $ht
 
 
     $scope.commit = function(){
-        $http.put("product/save",$scope.show_product).then(
+        if(!($scope.show_product.code && $scope.show_product.name)){
+            alert("请填写产品信息！");
+            return;
+        }
+        console.log(angular.toJson($scope.show_product));
+        $http.post("product/save",angular.toJson($scope.show_product)).then(
             function(res){
                 alert(res.data.result);
                 if($scope.right_alias_select != -1){
@@ -174,7 +177,7 @@ mainApp.controller("productController", ["$scope", "$http", function($scope, $ht
             return;
         }
 
-        $http.delete("product/del",id).then(
+        $http.delete("product/"+ id +"/del").then(
             function(res){
                 alert(res.data.result);
                 if($scope.right_alias_select != -1){

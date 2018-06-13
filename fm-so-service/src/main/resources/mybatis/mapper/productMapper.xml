@@ -28,6 +28,14 @@
         and deleted = 0
     </select>
 
+    <select id="getProductByCode" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM product
+        WHERE code = #{code}
+        and deleted = 0
+    </select>
+
 
     <select id="getProductList" resultMap="BaseResultMap"  >
         SELECT
