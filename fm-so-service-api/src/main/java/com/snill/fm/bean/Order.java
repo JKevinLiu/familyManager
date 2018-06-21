@@ -7,11 +7,13 @@ import java.util.List;
 public class Order implements Serializable{
     private int id;
 
-    private User user;
+    private int userId;
+    private String username;
     private List<OrderItem> orderList;
 
     private Date createDate;
     private int deleted;
+    private int totalPrice;
 
     public int getId() {
         return id;
@@ -21,12 +23,20 @@ public class Order implements Serializable{
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public List<OrderItem> getOrderList() {
@@ -51,5 +61,13 @@ public class Order implements Serializable{
 
     public void setDeleted(int deleted) {
         this.deleted = deleted;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

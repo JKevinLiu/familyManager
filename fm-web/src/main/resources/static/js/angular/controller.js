@@ -158,10 +158,10 @@ mainApp.controller("productController", ["$scope", "$http", function($scope, $ht
             alert("请填写产品信息！");
             return;
         }
-        console.log(angular.toJson($scope.show_product));
         $http.post("product/save",angular.toJson($scope.show_product)).then(
             function(res){
                 alert(res.data.result);
+                $scope.getAilas();
                 if($scope.right_alias_select != -1){
                     $scope.getAliasAndchilren($scope.right_alias_select);
                 }
@@ -172,7 +172,7 @@ mainApp.controller("productController", ["$scope", "$http", function($scope, $ht
     }
 
 
-    $scope.del = function(id){
+    $scope.del = function(id, parentId){
         if(!confirm("确定删除该条记录吗？")){
             return;
         }
@@ -180,8 +180,12 @@ mainApp.controller("productController", ["$scope", "$http", function($scope, $ht
         $http.delete("product/"+ id +"/del").then(
             function(res){
                 alert(res.data.result);
-                if($scope.right_alias_select != -1){
-                    $scope.getAliasAndchilren($scope.right_alias_select);
+                $scope.getAilas();
+
+                if(parentId == -1){
+                    $scope.aliasAndchilren = [];
+                }else{
+                    $scope.getAliasAndchilren($scope.left_alias_select);
                 }
             },function(res){
                 alert(res.data.result);

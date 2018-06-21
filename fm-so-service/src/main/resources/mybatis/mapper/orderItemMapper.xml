@@ -9,12 +9,19 @@
         <result property="createDate" column="create_date" jdbcType="DATE" />
         <result property="deleted" column="deleted" jdbcType="INTEGER" />
 
+        <!--
         <association property="product" column="product_id" javaType="com.snill.fm.bean.Product" select="com.snill.fm.mapper.ProductMapper.getProductById" />
+        -->
+        <result property="productId" column="product_id" jdbcType="INTEGER" />
+        <result property="productCode" column="product_code" jdbcType="VARCHAR" />
+        <result property="productName" column="product_name" jdbcType="VARCHAR" />
+
+        <result property="description" column="description" jdbcType="VARCHAR" />
     </resultMap>
 
 
     <sql id="Base_Column_List" >
-        id, order_id, price, product_id, create_date, deleted
+        id, order_id, price, create_date, deleted, product_id, product_code, product_name, description
     </sql>
 
     <select id="getOrderItemById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
@@ -35,9 +42,9 @@
     <insert id="add" parameterType="com.snill.fm.bean.OrderItem" >
         INSERT INTO
         order_item
-        (order_id, price, product_id, create_date)
+        (order_id, price, create_date, product_id, product_code, product_name, description)
         VALUES
-        (#{orderId}, #{code}, #{product.id}, #{createDate})
+        (#{orderId}, #{price}, #{create_date}, #{productId}, #{productCode}, #{productName}, #{description})
     </insert>
 
 
@@ -47,8 +54,11 @@
         SET
         order_id = #{orderId},
         price = #{price},
-        product_id = #{product.id},
-        create_date = #{createDate}
+        create_date = #{createDate},
+        product_id = #{productId},
+        product_code = #{productCode},
+        product_name = #{productName},
+        description = #{description}
         WHERE
         id = #{id}
     </update>

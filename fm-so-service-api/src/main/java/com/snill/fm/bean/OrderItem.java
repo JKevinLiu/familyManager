@@ -8,10 +8,14 @@ public class OrderItem implements Serializable{
     private int orderId;
     private int price;
 
-    private Product product;
+    private int productId;
+    private String productCode;
+    private String productName;
 
     private Date createDate;
     private int deleted;
+
+    private String description;
 
     public int getId() {
         return id;
@@ -37,12 +41,28 @@ public class OrderItem implements Serializable{
         this.price = price;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Date getCreateDate() {
@@ -59,5 +79,13 @@ public class OrderItem implements Serializable{
 
     public void setDeleted(int deleted) {
         this.deleted = deleted;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

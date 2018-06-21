@@ -38,7 +38,7 @@
                         <td ng-if="$odd" class="oddrowcolor">{{product.id}}</td>
                         <td ng-if="$odd" class="oddrowcolor">{{product.code}}</td>
                         <td ng-if="$odd" class="oddrowcolor">{{product.name}}</td>
-                        <td ng-if="$odd" class="oddrowcolor"><input type="button" ng-click="del(product.id)" value="删除"/></td>
+                        <td ng-if="$odd" class="oddrowcolor"><input type="button" ng-click="del(product.id, product.parentId)" value="删除"/></td>
 
                         <td ng-if="$even" class="evenrowcolor">
                             <input type="checkbox"  name="ck_product" ng-click="editProduct(product, $index)"/>
@@ -46,7 +46,7 @@
                         <td ng-if="$even" class="evenrowcolor">{{product.id}}</td>
                         <td ng-if="$even" class="evenrowcolor">{{product.code}}</td>
                         <td ng-if="$even" class="evenrowcolor">{{product.name}}</td>
-                        <td ng-if="$even" class="evenrowcolor"><input type="button" ng-click="del(product.id)" value="删除"/></td>
+                        <td ng-if="$even" class="evenrowcolor"><input type="button" ng-click="del(product.id, product.parentId)" value="删除"/></td>
                     </tr>
                 </table>
             </div>
@@ -96,5 +96,4 @@
             </form>
         </div>
     </div>
-
 </div>
