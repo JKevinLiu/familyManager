@@ -3,14 +3,12 @@ mainApp.config(['$routeProvider', function($routeProvider) {
     var route = $routeProvider;
 
     route.when('/nav/:code', {
-        templateUrl: function($routeParams){return 'nav/'+$routeParams.code;},
-        controller: 'viewController'
+        templateUrl: function($routeParams){return 'nav/'+$routeParams.code;}
     });
 
     route.when('/subnav/:option', {
         templateUrl: function($routeParams){return 'subnav/'+$routeParams.option;},
         controller: 'orderOptionController'
-
     });
 
     route.otherwise({ templateUrl: 'main'});

@@ -1,19 +1,21 @@
 package com.snill.fm.controller;
 
+
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.snill.fm.bean.JsonResult;
 import com.snill.fm.bean.Product;
 import com.snill.fm.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
 
 @RestController
 public class ProductController {
 
     @Reference
     private ProductService productService;
+
 
     @RequestMapping(value = "product/alias", method = RequestMethod.GET)
     public ResponseEntity<JsonResult> getAliasProduct(){
@@ -60,11 +62,26 @@ public class ProductController {
         return ResponseEntity.ok(r);
     }
 
+    @RequestMapping(value = "product/{id}/show", method = RequestMethod.GET)
+    public ResponseEntity<JsonResult> getProductById(@PathVariable(value = "id") Integer id){
+        JsonResult r = new JsonResult();
+        try {
+            Product product = productService.getProductById(id);
+            r.setResult(product);
+            r.setStatus("ok");
+        } catch (Exception e) {
+            r.setResult(e.getClass().getName() + ":" + e.getMessage());
+            r.setStatus("error");
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok(r);
+    }
+
     @RequestMapping(value = "product/save", method = RequestMethod.POST)
     public ResponseEntity<JsonResult> addProduct(@RequestBody Product product){
         JsonResult r = new JsonResult();
         try {
-            int ret = productService.save(product);
+            productService.save(product);
             r.setResult("保存成功！");
             r.setStatus("ok");
         } catch (Exception e) {
@@ -79,7 +96,7 @@ public class ProductController {
     public ResponseEntity<JsonResult> delProduct(@PathVariable("id") Integer id){
         JsonResult r = new JsonResult();
         try {
-            int ret = productService.delete(id);
+            productService.delete(id);
             r.setResult("删除成功");
             r.setStatus("ok");
         } catch (Exception e) {
@@ -89,5 +106,6 @@ public class ProductController {
         }
         return ResponseEntity.ok(r);
     }
+
 
 }

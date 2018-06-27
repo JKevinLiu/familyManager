@@ -15,42 +15,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 
 @SpringBootApplication
-@MapperScan("com.snill.fm.mapper")
-// @ImportResource({"classpath:provider.xml"})
 public class BaseServiceApplication {
     private static volatile boolean running = true;
 
-
-    private static Logger log = Logger
-            .getLogger(BaseServiceApplication.class);
-
-
-    // DataSource配置
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource dataSource() {
-        return new com.alibaba.druid.pool.DruidDataSource();
-    }
-
-
-    // 提供SqlSeesion
-    @Bean
-    public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource());
-
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-
-        sqlSessionFactoryBean.setMapperLocations(resolver
-                .getResources("classpath:mybatis/mapper/*.xml"));
-
-        return sqlSessionFactoryBean.getObject();
-    }
-
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
-    }
+    private static Logger log = Logger.getLogger(BaseServiceApplication.class);
 
     /**
      * Main 方法启动项

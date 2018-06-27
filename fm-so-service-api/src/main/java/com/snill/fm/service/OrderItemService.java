@@ -6,8 +6,7 @@ import java.util.List;
 
 public interface OrderItemService {
     public OrderItem getOrderItemById(Integer id);
-    public List<OrderItem> getOrderItemList();
-    public int add(OrderItem orderItem);
-    public int update(Integer id, OrderItem orderItem);
-    public int delete(Integer id);
+    public List<OrderItem> getOrderItemListByOrderId(Integer id);
+    public void save(OrderItem orderItem);
+    public void delete(Integer id);
 }

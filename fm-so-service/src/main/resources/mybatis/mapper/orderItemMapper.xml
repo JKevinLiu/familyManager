@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
 <mapper namespace="com.snill.fm.mapper.OrderItemMapper" >
     <resultMap id="BaseResultMap" type="com.snill.fm.bean.OrderItem" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result property="orderId" column="order_id" jdbcType="INTEGER" />
         <result property="price" column="price" jdbcType="INTEGER" />
-        <result property="createDate" column="create_date" jdbcType="DATE" />
+        <result property="createDate" column="create_date" jdbcType="VARCHAR" />
         <result property="deleted" column="deleted" jdbcType="INTEGER" />
 
         <!--
@@ -15,6 +16,7 @@
         <result property="productId" column="product_id" jdbcType="INTEGER" />
         <result property="productCode" column="product_code" jdbcType="VARCHAR" />
         <result property="productName" column="product_name" jdbcType="VARCHAR" />
+
 
         <result property="description" column="description" jdbcType="VARCHAR" />
     </resultMap>
@@ -29,14 +31,15 @@
         <include refid="Base_Column_List" />
         FROM order_item
         WHERE id = #{id}
-        and deleted = 1
+        and deleted = 0
     </select>
 
-    <select id="getOrderItemList" resultMap="BaseResultMap"  >
+    <select id="getOrderItemListByOrderId" parameterType="java.lang.Integer" resultMap="BaseResultMap"  >
         SELECT
         <include refid="Base_Column_List" />
         FROM order_item
-        where deleted = 1
+        where deleted = 0
+        and order_id = #{id}
     </select>
 
     <insert id="add" parameterType="com.snill.fm.bean.OrderItem" >
@@ -44,9 +47,8 @@
         order_item
         (order_id, price, create_date, product_id, product_code, product_name, description)
         VALUES
-        (#{orderId}, #{price}, #{create_date}, #{productId}, #{productCode}, #{productName}, #{description})
+        (#{orderId}, #{price}, #{createDate}, #{productId}, #{productCode}, #{productName}, #{description})
     </insert>
-
 
     <update id="update" parameterType="com.snill.fm.bean.OrderItem" >
         UPDATE
@@ -63,7 +65,6 @@
         id = #{id}
     </update>
 
-
     <delete id="delete" parameterType="java.lang.Integer" >
         UPDATE
         order_item
@@ -72,5 +73,48 @@
         WHERE
         id = #{id}
     </delete>
+
+    <delete id="deleteOrderItemByOrderId" parameterType="java.lang.Integer" >
+        UPDATE
+        order_item
+        SET
+        deleted = 1
+        WHERE
+        order_id = #{orderId}
+    </delete>
+
+
+    <!-- 批量插入数据 -->
+    <insert id="batchAdd" parameterType="java.util.List" useGeneratedKeys="true">
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT
+            LAST_INSERT_ID()
+        </selectKey>
+        insert into order_item
+        (order_id, price, create_date, product_id, product_code, product_name, description)
+        values
+        <foreach collection="list" item="orderItem" index="index"
+                 separator=",">
+            (
+            #{orderItem.orderId}, #{orderItem.price}, #{orderItem.createDate}, #{orderItem.productId},
+            #{orderItem.productCode}, #{orderItem.productName}, #{orderItem.description}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据 -->
+    <update id="batchUpdate">
+        <foreach collection="list" index="index" item="item" open="" close="" separator=";">
+            update order_item set
+            order_id = #{item.orderId},
+            price = #{item.price},
+            create_date = #{item.createDate},
+            product_id = #{item.productId},
+            product_code = #{item.productCode},
+            product_name = #{item.productName},
+            description = #{item.description}
+            where id=#{item.id}
+        </foreach>
+    </update>
 
 </mapper>

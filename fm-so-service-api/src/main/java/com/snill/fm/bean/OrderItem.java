@@ -1,7 +1,6 @@
 package com.snill.fm.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class OrderItem implements Serializable{
     private int id;
@@ -12,7 +11,7 @@ public class OrderItem implements Serializable{
     private String productCode;
     private String productName;
 
-    private Date createDate;
+    private String createDate;
     private int deleted;
 
     private String description;
@@ -65,11 +64,11 @@ public class OrderItem implements Serializable{
         this.productName = productName;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 

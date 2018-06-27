@@ -28,7 +28,7 @@
 
     <div class="center_panel">
         <nav class="left_navigation">
-            <ul ng-repeat="permission in permissions" class="nav_ul">
+            <ul ng-repeat="permission in permissions | orderBy:'sorted'" class="nav_ul">
                 <li class="nav_li">
                     <a href="#nav/{{permission.code}}" class="nav_li-link">{{permission.name}}</a>
                 </li>

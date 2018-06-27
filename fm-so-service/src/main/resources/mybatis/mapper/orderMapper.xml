@@ -11,11 +11,11 @@
         <result property="totalPrice" column="o_total_price" jdbcType="INTEGER" />
 
         <!-- 多对多关联映射：collection -->
-        <collection property="orderList" ofType="com.snill.fm.bean.OrderItem" >
+        <collection property="orderItemList" ofType="com.snill.fm.bean.OrderItem" >
             <id property="id" column="oi_id"  jdbcType="INTEGER" />
             <result property="orderId" column="oi_order_id" jdbcType="INTEGER" />
             <result property="price" column="oi_price" jdbcType="INTEGER" />
-            <result property="createDate" column="oi_create_date" jdbcType="DATE" />
+            <result property="createDate" column="oi_create_date" jdbcType="VARCHAR" />
             <result property="deleted" column="oi_deleted" jdbcType="INTEGER" />
 
             <!--
@@ -57,7 +57,7 @@
         and oi.deleted = 0
     </select>
 
-    <insert id="add" parameterType="com.snill.fm.bean.Order" >
+    <insert id="add" parameterType="com.snill.fm.bean.Order" useGeneratedKeys="true" keyProperty="id" >
         INSERT INTO
         `fm-so`.`order`
         (user_id, username, create_date, total_price)

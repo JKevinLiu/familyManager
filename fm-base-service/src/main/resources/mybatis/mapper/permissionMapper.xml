@@ -8,11 +8,12 @@
         <result column="ptype" property="ptype" jdbcType="INTEGER" />
         <result column="url" property="url" jdbcType="VARCHAR" />
         <result column="mapping" property="mapping" jdbcType="VARCHAR" />
+        <result column="sorted" property="sorted" jdbcType="INTEGER" />
     </resultMap>
 
 
     <sql id="Base_Column_List" >
-        id, name, code, ptype, url, mapping
+        id, name, code, ptype, url, mapping, sorted
     </sql>
 
     <select id="getPermissionById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
@@ -29,12 +30,12 @@
         WHERE code = #{code}
     </select>
 
-
     <select id="getPermissionList" resultMap="BaseResultMap"  >
         SELECT
         <include refid="Base_Column_List" />
         FROM permission
     </select>
+
 
     <insert id="add" parameterType="com.snill.fm.bean.Permission" >
         INSERT INTO
@@ -44,7 +45,6 @@
         (#{name}, #{code}, #{ptype}, #{url}, #{mapping})
     </insert>
 
-
     <update id="update" parameterType="com.snill.fm.bean.Permission" >
         UPDATE
         permission
@@ -53,7 +53,6 @@
         WHERE
         id = #{id}
     </update>
-
 
     <delete id="delete" parameterType="java.lang.Integer" >
         DELETE FROM

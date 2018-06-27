@@ -20,6 +20,3 @@ spring:
       port: 20882
     scan: com.snill.fm.service
     timeout: 10000
-mybatis:
-  type-aliases-package: com.snill.fm.bean
-  mapper-locations: classpath:mybatis/mapper/*.xml

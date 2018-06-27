@@ -106,6 +106,7 @@
 
 
 .order_options_form input[type="text"],
+.order_options_form input[type="number"],
 .order_options_form textarea,
 .order_options_form select {
     color: #888;

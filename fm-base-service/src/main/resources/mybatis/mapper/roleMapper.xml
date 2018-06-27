@@ -15,12 +15,14 @@
             <result column="p_ptype" property="ptype" jdbcType="INTEGER" />
             <result column="p_url" property="url" jdbcType="VARCHAR" />
             <result column="p_mapping" property="mapping" jdbcType="VARCHAR" />
+            <result column="p_sorted" property="sorted" jdbcType="INTEGER" />
         </collection>
     </resultMap>
 
     <sql id="Base_Column_List" >
         r.id as r_id, r.name as r_name, r.code as r_code,
-        p.id as p_id, p.name as p_name, p.code as p_code, p.ptype as p_ptype, p.url as p_url, p.mapping as p_mapping
+        p.id as p_id, p.name as p_name, p.code as p_code, p.ptype as p_ptype, p.url as p_url,
+        p.mapping as p_mapping, p.sorted as p_sorted
     </sql>
 
     <select id="getRoleById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >

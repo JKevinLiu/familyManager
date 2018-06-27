@@ -9,9 +9,9 @@ public class Order implements Serializable{
 
     private int userId;
     private String username;
-    private List<OrderItem> orderList;
+    private List<OrderItem> orderItemList;
 
-    private Date createDate;
+    private String createDate;
     private int deleted;
     private int totalPrice;
 
@@ -39,19 +39,19 @@ public class Order implements Serializable{
         this.username = username;
     }
 
-    public List<OrderItem> getOrderList() {
-        return orderList;
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
     }
 
-    public void setOrderList(List<OrderItem> orderList) {
-        this.orderList = orderList;
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
