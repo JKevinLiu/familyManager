@@ -62,4 +62,8 @@ public class MainController {
         return "main";
     }
 
+    @RequestMapping(value = "/page")
+    public String page(){
+        return "page/page";
+    }
 }

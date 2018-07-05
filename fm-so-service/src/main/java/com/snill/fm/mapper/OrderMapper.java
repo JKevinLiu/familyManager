@@ -1,5 +1,6 @@
 package com.snill.fm.mapper;
 
+import com.github.pagehelper.Page;
 import com.snill.fm.bean.Order;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +14,5 @@ public interface OrderMapper {
     public int add(Order order);
     public int update(Order order);
     public int delete(Integer id);
+    public List<Order> getSimpleOrderList();
 }

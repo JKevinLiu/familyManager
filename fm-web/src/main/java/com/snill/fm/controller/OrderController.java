@@ -1,16 +1,15 @@
 package com.snill.fm.controller;
 
 import java.util.List;
+
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.snill.fm.bean.JsonResult;
 import com.snill.fm.bean.Order;
-import com.snill.fm.bean.page.Page;
+import com.snill.fm.page.ReqPage;
 import com.snill.fm.service.OrderService;
 
 
@@ -38,12 +37,12 @@ public class OrderController {
     }
 
 
-    @RequestMapping(value = "order/list", method = RequestMethod.GET)
-    public ResponseEntity<JsonResult> getOrderList(Page page){
+    @RequestMapping(value = "order/list", method = RequestMethod.POST)
+    public ResponseEntity<JsonResult> getOrderList(@RequestBody ReqPage reqPage){
         JsonResult r = new JsonResult();
         try {
-            List<Order> orderList = orderService.getOrderList();
-            r.setResult(orderList);
+            PageInfo<Order> pageInfo = orderService.getOrderList(reqPage);
+            r.setResult(pageInfo);
             r.setStatus("ok");
         } catch (Exception e) {
             r.setResult(e.getClass().getName() + ":" + e.getMessage());

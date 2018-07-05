@@ -20,22 +20,11 @@ mainApp.controller("initController", ["$rootScope", "userService", function($roo
  * order控制器
  */
 mainApp.controller("orderController", ["$scope","$http", "$location", function($scope, $http, $location) {
+    $scope.orders = [];
+
     $scope.add = function(){
         $location.path("subnav/add_order");
     };
-
-    $scope.query = function(){
-        $http.get("order/list").then(
-            function (res) {
-                $scope.orders = res.data.result;
-            },
-            function(res){
-                //fail
-                alert(res.data.desc);
-            }
-        );
-    }
-
 
     $scope.del = function(id){
         if(!confirm("确定删除该条记录吗？")){
@@ -52,8 +41,9 @@ mainApp.controller("orderController", ["$scope","$http", "$location", function($
         );
     };
 
-
-    $scope.query();
+    $scope.$on('orderList', function(event,data) {
+        $scope.orders = data;
+    });
 
 }]);
 
@@ -347,4 +337,13 @@ mainApp.controller("productController", ["$scope", "$http", function($scope, $ht
     }
 
     $scope.getAilas();
+}]);
+
+
+
+/**
+ * page控制器
+ */
+mainApp.controller("pageController", ["$scope","$http", function($scope, $http) {
+
 }]);

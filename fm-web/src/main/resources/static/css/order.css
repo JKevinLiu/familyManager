@@ -69,3 +69,11 @@
 .order_button button:hover{
     background: #3EB1DD;
 }
+
+.order_div_table {
+    height:70%;
+    line-height:70%;
+    overflow:auto;
+    overflow-x:hidden;
+    background: #d4e3e5;
+}

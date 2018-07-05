@@ -2,9 +2,13 @@ package com.snill.fm.service.impl;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.snill.fm.bean.OrderItem;
 import com.snill.fm.mapper.OrderItemMapper;
 import com.snill.fm.mapper.OrderMapper;
+import com.snill.fm.page.ReqPage;
 import com.snill.fm.service.OrderService;
 import com.snill.fm.bean.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +33,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getOrderList() {
-        return orderMapper.getOrderList();
+    public PageInfo<Order> getOrderList(ReqPage page) {
+        PageHelper.startPage(page.getCurPage(), page.getPageSize());
+        List<Order> orderList = orderMapper.getSimpleOrderList();
+        PageInfo<Order> pageInfo = new PageInfo<>(orderList);
+        return pageInfo;
     }
 
     @Override

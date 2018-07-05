@@ -1,12 +1,12 @@
 package com.snill.fm.service;
 
+import com.github.pagehelper.PageInfo;
 import com.snill.fm.bean.Order;
-
-import java.util.List;
+import com.snill.fm.page.ReqPage;
 
 public interface OrderService {
     public Order getOrderById(Integer id);
-    public List<Order> getOrderList();
+    public PageInfo<Order> getOrderList(ReqPage page);
     public void save(Order order);
     public void delete(Integer id);
 }
