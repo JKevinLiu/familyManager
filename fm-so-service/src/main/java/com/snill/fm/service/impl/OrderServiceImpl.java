@@ -3,7 +3,6 @@ package com.snill.fm.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import com.snill.fm.bean.OrderItem;
 import com.snill.fm.mapper.OrderItemMapper;
@@ -15,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -54,26 +54,41 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setTotalPrice(totalPrice);
 
+        Calendar calendar = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = df.format(calendar.getTime());
+
         if(order.getId() != 0){
+            List<OrderItem> updateOrderItemList = new ArrayList<>();
+            List<OrderItem> saveOrderItemList = new ArrayList<>();
+
+            orderItemList.forEach(item -> {
+                if(item.getId() == 0){
+                    item.setCreateDate(date);
+                    item.setOrderId(order.getId());
+                    saveOrderItemList.add(item);
+                }else{
+                    updateOrderItemList.add(item);
+                }
+            });
+
             orderMapper.update(order);
-            orderItemMapper.batchUpdate(orderItemList);
+
+            if(updateOrderItemList.size() > 0){
+                orderItemMapper.batchUpdate(updateOrderItemList);
+            }
+            if(saveOrderItemList.size() > 0){
+                orderItemMapper.batchAdd(saveOrderItemList);
+            }
+
         }else{
-
-            Calendar calendar = Calendar.getInstance();
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String date = df.format(calendar.getTime());
             order.setCreateDate(date);
-
-            int orderId = orderMapper.add(order);
+            orderMapper.add(order);
 
             orderItemList.forEach(item -> {
                 item.setCreateDate(date);
                 item.setOrderId(order.getId());
             });
-
-            /*if(order != null){
-                throw new IllegalArgumentException("事务测试！");
-            }*/
 
             orderItemMapper.batchAdd(orderItemList);
         }

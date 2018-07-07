@@ -55,7 +55,7 @@ public class MyBatisConfig {
     /**
      * dubbo集成springAOP事务修改
      * 1. 修改dubbo源码Service注解
-     *    @Inherited  import java.lang.annotation.Inherited
+     *    <@Inherited>  import java.lang.annotation.Inherited
      * 2. @Service注解上加上interfaceClass属性
      * 3. 开启spring自动注解  @EnableAspectJAutoProxy(proxyTargetClass = true,exposeProxy = true)
      */

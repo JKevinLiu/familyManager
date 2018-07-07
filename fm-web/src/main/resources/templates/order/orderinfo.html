@@ -22,8 +22,8 @@
             </thead>
 
 
-            <tr ng-repeat="order in orders"><!--| orderBy:'-createDate' -->
-                <td ng-if="$odd" class="oddrowcolor">{{ $index + 1 }}</td>
+            <tr ng-repeat="order in orders | orderBy:'-createDate'" ng-dblclick="edit(order.id)">
+                <td ng-if="$odd" class="oddrowcolor" >{{ $index + 1 }}</td>
                 <td ng-if="$even" class="evenrowcolor">{{ $index + 1 }}</td>
 
 
@@ -38,8 +38,8 @@
                 <td ng-if="$even" class="evenrowcolor">{{order.createDate}}</td>
 
 
-                <td ng-if="$odd" class="oddrowcolor">{{order.totalPrice}}</td>
-                <td ng-if="$even" class="evenrowcolor">{{order.totalPrice}}</td>
+                <td ng-if="$odd" class="oddrowcolor">{{order.totalPrice/100}}元</td>
+                <td ng-if="$even" class="evenrowcolor">{{order.totalPrice/100}}元</td>
             </tr>
         </table>
     </div>

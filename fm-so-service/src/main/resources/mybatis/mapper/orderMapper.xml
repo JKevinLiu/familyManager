@@ -42,6 +42,7 @@
         id, user_id, username, create_date, total_price
         from `fm-so`.`order`
         where deleted = 0
+        order by create_date desc
     </select>
 
     <select id="getOrderById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >

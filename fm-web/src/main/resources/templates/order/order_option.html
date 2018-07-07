@@ -10,7 +10,7 @@
 
     <div class="center_order_options_panel">
         <div class="order_options_title">
-            <h1>添加收支</h1>
+            <h1>{{titleName}}</h1>
         </div>
 
 
@@ -80,7 +80,7 @@
                     <td ng-if="$odd" class="oddrowcolor"><input type="checkbox" name="ck" ng-click="ck($index)" /></td>
                     <td ng-if="$odd" class="oddrowcolor">{{item.aliasName}}</td>
                     <td ng-if="$odd" class="oddrowcolor">{{item.productName}}</td>
-                    <td ng-if="$odd" class="oddrowcolor">{{item.price}}</td>
+                    <td ng-if="$odd" class="oddrowcolor">{{item.price/100}}</td>
                     <td ng-if="$odd" class="oddrowcolor">{{item.description}}</td>
                     <td ng-if="$odd" class="oddrowcolor"><input type="button" ng-click="del($index)" value="删除"/></td>
 
@@ -88,7 +88,7 @@
                     <td ng-if="$even" class="evenrowcolor"><input type="checkbox" name="ck" ng-click="ck($index)"/></td>
                     <td ng-if="$even" class="evenrowcolor">{{item.aliasName}}</td>
                     <td ng-if="$even" class="evenrowcolor">{{item.productName}}</td>
-                    <td ng-if="$even" class="evenrowcolor">{{item.price}}</td>
+                    <td ng-if="$even" class="evenrowcolor">{{item.price/100}}</td>
                     <td ng-if="$even" class="evenrowcolor">{{item.description}}</td>
                     <td ng-if="$even" class="evenrowcolor"><input type="button" ng-click="del($index)" value="删除"/></td>
 

@@ -104,17 +104,65 @@
 
     <!-- 批量更新数据 -->
     <update id="batchUpdate">
-        <foreach collection="list" index="index" item="item" open="" close="" separator=";">
-            update order_item set
-            order_id = #{item.orderId},
-            price = #{item.price},
-            create_date = #{item.createDate},
-            product_id = #{item.productId},
-            product_code = #{item.productCode},
-            product_name = #{item.productName},
-            description = #{item.description}
-            where id=#{item.id}
-        </foreach>
+        update order_item
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="order_id =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.orderId!=null">
+                        when id=#{item.id} then #{item.orderId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="price =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.price!=null">
+                        when id=#{item.id} then #{item.price}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_date =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.createDate!=null">
+                        when id=#{item.id} then #{item.createDate}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="product_id =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.productId!=null">
+                        when id=#{item.id} then #{item.productId}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="product_code =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.productCode!=null">
+                        when id=#{item.id} then #{item.productCode}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="product_name =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.productName!=null">
+                        when id=#{item.id} then #{item.productName}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="description =case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.description!=null">
+                        when id=#{item.id} then #{item.description}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        <where>
+            <foreach collection="list" separator="or" item="item">
+                id = #{item.id}
+            </foreach>
+        </where>
+
+
     </update>
 
 </mapper>

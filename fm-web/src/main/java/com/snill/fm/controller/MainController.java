@@ -44,17 +44,14 @@ public class MainController {
         return ret;
     }
 
-    @RequestMapping(value = "/subnav/{option}")
-    public String order(@PathVariable("option") String option){
+    @RequestMapping(value = "/subnav/add_order")
+    public String orderAdd(){
+        return "order/order_option";
+    }
 
-        if(option != null){
-            switch(option){
-                case "add_order":
-                    return "order/order_option";
-            }
-        }
-
-        return "order";
+    @RequestMapping(value = "/subnav/edit_order/{id}")
+    public String orderEdit(@PathVariable("id") String id){
+        return "order/order_option";
     }
 
     @RequestMapping(value = "/main")

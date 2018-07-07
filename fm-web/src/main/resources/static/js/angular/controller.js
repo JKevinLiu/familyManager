@@ -26,6 +26,10 @@ mainApp.controller("orderController", ["$scope","$http", "$location", function($
         $location.path("subnav/add_order");
     };
 
+    $scope.edit = function(id){
+        $location.path("subnav/edit_order/"+id);
+    };
+
     $scope.del = function(id){
         if(!confirm("确定删除该条记录吗？")){
             return;
@@ -51,9 +55,11 @@ mainApp.controller("orderController", ["$scope","$http", "$location", function($
 /**
  * order_option控制器
  */
-mainApp.controller("orderOptionController", ["$rootScope", "$scope", "$routeParams", "$http",
-    function($rootScope, $scope, $routeParams, $http) {
-        $scope.option = $routeParams.option;
+mainApp.controller("orderOptionController", ["$rootScope", "$scope", "$routeParams", "$http", "$location",
+    function($rootScope, $scope, $routeParams, $http, $location) {
+        $scope.orderId = $routeParams.id;
+
+        $scope.titleName = "添加收支";
 
         $scope.option_item = {};
         $scope.option_item.alias_select = "-1";
@@ -173,22 +179,18 @@ mainApp.controller("orderOptionController", ["$rootScope", "$scope", "$routePara
                 alert("请至少添加一条明细！");
                 return;
             }
+
+            if($scope.order.orderItemList.length > 5){
+                alert("最多添加5条明细！");
+                return;
+            }
             $scope.order.userId = $rootScope.user.id;
             $scope.order.username = $rootScope.user.nickname;
 
-            console.log(angular.toJson($scope.order));
             $http.post("order/save",angular.toJson($scope.order)).then(
                 function(res){
                     alert(res.data.result);
-
-                    //清空
-                    $scope.option_item = {};
-                    $scope.option_item.alias_select = "-1";
-                    $scope.option_item.product_select = "-1";
-                    $scope.order = {};
-                    $scope.order.orderItemList = [];
-                    $scope.curProduct = {};
-
+                    $location.path("nav/order_info");
                 },function(res){
                     alert(res.data.result);
                 }
@@ -206,6 +208,20 @@ mainApp.controller("orderOptionController", ["$rootScope", "$scope", "$routePara
         }
 
         $scope.getAilas();
+
+        if($scope.orderId != undefined && $scope.orderId != 0){
+            $scope.titleName = "编辑明细";
+            //获取orderitem
+            $http.get("order/" + $scope.orderId + "/show").then(
+                function(res){
+                    $scope.order = res.data.result;
+                },function(res){
+                    //fail
+                    alert(res.data.desc);
+                }
+            );
+        }
+
 }]);
 
 

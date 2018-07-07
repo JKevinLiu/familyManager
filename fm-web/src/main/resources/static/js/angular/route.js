@@ -6,8 +6,13 @@ mainApp.config(['$routeProvider', function($routeProvider) {
         templateUrl: function($routeParams){return 'nav/'+$routeParams.code;}
     });
 
-    route.when('/subnav/:option', {
-        templateUrl: function($routeParams){return 'subnav/'+$routeParams.option;},
+    route.when('/subnav/add_order', {
+        templateUrl: "subnav/add_order",
+        controller: 'orderOptionController'
+    });
+
+    route.when('/subnav/edit_order/:id', {
+        templateUrl: function($routeParams){return 'subnav/edit_order/'+$routeParams.id;},
         controller: 'orderOptionController'
     });
 
