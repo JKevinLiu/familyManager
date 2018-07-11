@@ -1,9 +1,7 @@
 package com.snill.fm.controller;
 
-import java.util.List;
-
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import org.apache.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -15,7 +13,7 @@ import com.snill.fm.service.OrderService;
 
 @RestController
 public class OrderController {
-
+    private static Logger log = Logger.getLogger(OrderController.class);
 
     @Reference
     private OrderService orderService;
@@ -23,6 +21,7 @@ public class OrderController {
 
     @RequestMapping(value = "order/{id}/show", method = RequestMethod.GET)
     public ResponseEntity<JsonResult> getOrderById (@PathVariable(value = "id") Integer id){
+        log.error("not use cache!");
         JsonResult r = new JsonResult();
         try {
             Order order = orderService.getOrderById(id);

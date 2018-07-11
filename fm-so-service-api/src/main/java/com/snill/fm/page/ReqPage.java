@@ -24,7 +24,8 @@ public class ReqPage implements Serializable{
         this.curPage = curPage;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return pageSize+""+curPage;
+    }
 }

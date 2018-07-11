@@ -10,7 +10,9 @@ import com.snill.fm.mapper.OrderMapper;
 import com.snill.fm.page.ReqPage;
 import com.snill.fm.service.OrderService;
 import com.snill.fm.bean.Order;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,19 +22,21 @@ import java.util.List;
 
 @Service(interfaceClass=OrderService.class)
 public class OrderServiceImpl implements OrderService {
+    private static Logger log = Logger.getLogger(OrderServiceImpl.class);
 
     @Autowired
     private OrderMapper orderMapper;
     @Autowired
     private OrderItemMapper orderItemMapper;
 
-
     @Override
+    @Cacheable(value="orderCache", keyGenerator = "keyGenerator")
     public Order getOrderById(Integer id) {
         return orderMapper.getOrderById(id);
     }
 
     @Override
+    @Cacheable(value="orderListCache", keyGenerator = "keyGenerator")
     public PageInfo<Order> getOrderList(ReqPage page) {
         PageHelper.startPage(page.getCurPage(), page.getPageSize());
         List<Order> orderList = orderMapper.getSimpleOrderList();

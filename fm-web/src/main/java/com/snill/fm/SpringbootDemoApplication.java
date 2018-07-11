@@ -11,16 +11,3 @@ public class SpringbootDemoApplication {
     }
 
 }
-
-
-/*@SpringBootApplication
-public class SpringbootDemoApplication extends SpringBootServletInitializer {
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(SpringbootDemoApplication.class);
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(SpringbootDemoApplication.class, args);
-    }
-}*/

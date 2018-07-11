@@ -109,6 +109,7 @@
             <artifactId>pagehelper</artifactId>
             <version>${mybatis-page-helper.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>
