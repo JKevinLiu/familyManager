@@ -18,10 +18,8 @@ public class OrderController {
     @Reference
     private OrderService orderService;
 
-
     @RequestMapping(value = "order/{id}/show", method = RequestMethod.GET)
     public ResponseEntity<JsonResult> getOrderById (@PathVariable(value = "id") Integer id){
-        log.error("not use cache!");
         JsonResult r = new JsonResult();
         try {
             Order order = orderService.getOrderById(id);

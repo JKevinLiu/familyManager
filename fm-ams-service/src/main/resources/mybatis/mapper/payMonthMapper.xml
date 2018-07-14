@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snill.fm.mapper.PayMonthMapper" >
+
+    <resultMap id="BaseResultMap" type="com.snill.fm.bean.PayMonth" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="yearmonth" property="yearMonth" jdbcType="VARCHAR" />
+        <result column="total_price" property="totalPrice" jdbcType="VARCHAR" />
+        <result column="user_id" property="userId" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="INTEGER" />
+        <result column="deleted" property="deleted" jdbcType="INTEGER" />
+
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, yearmonth, total_price, user_id, username, deleted
+    </sql>
+
+    <select id="getPayMonthById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM pay_month
+        WHERE id = #{id}
+    </select>
+
+    <select id="getPayMonthByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM pay_month
+        WHERE user_id = #{userId}
+        and deleted = 0
+    </select>
+
+    <select id="getPayMonthByUserIdAndYearMonth" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM pay_month
+        WHERE user_id = #{userId}
+        and (yearmonth between #{startYearMonth} and  #{endYearMonth})
+        and deleted = 0
+    </select>
+
+    <insert id="add" parameterType="com.snill.fm.bean.PayMonth" >
+        INSERT INTO
+        pay_month
+        (yearmonth, total_price, user_id, username)
+        VALUES
+        (#{yearMonth}, #{totalPice}, #{userId}, #{username})
+    </insert>
+
+
+    <update id="update" parameterType="com.snill.fm.bean.PayMonth" >
+        UPDATE
+        pay_month
+        SET
+        yearmonth = #{yearMonth},
+        total_price = #{totalPice},
+        user_id = #{userId},
+        username = #{username}
+        WHERE
+        id = #{id}
+    </update>
+
+
+    <delete id="delete" parameterType="java.lang.Integer" >
+        update
+        pay_month
+        set deleted = 1
+        WHERE
+        id = #{id}
+    </delete>
+
+</mapper>
