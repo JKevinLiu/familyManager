@@ -3,7 +3,9 @@ package com.snill.fm.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.snill.fm.bean.JsonResult;
 import com.snill.fm.bean.PayMonth;
+import com.snill.fm.bean.dto.PayMonthInfo;
 import com.snill.fm.service.PayMonthService;
+import com.snill.fm.utils.BeanTransforUtil;
 import org.apache.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +27,12 @@ public class PayController {
         JsonResult r = new JsonResult();
         try {
             List<PayMonth> payMonthList = payMonthService.getUserLastHalfYearPayMonth(userId);
-            r.setResult(payMonthList);
+
+            PayMonthInfo payMonthInfo = BeanTransforUtil.transferPayMonth(payMonthList);
+
+            r.setResult(payMonthInfo);
             r.setStatus("ok");
+
         } catch (Exception e) {
             r.setResult(e.getClass().getName() + ":" + e.getMessage());
             r.setStatus("error");

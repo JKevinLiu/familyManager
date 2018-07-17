@@ -1,0 +1,25 @@
+.report_panel {
+    background: #D2E9FF;
+    padding: 20px 20px 20px 20px;
+    color: #666;
+}
+
+.report_title h1 {
+    display: block;
+    background: #C0E1FF;
+    border-bottom: 1px solid #B8DDFF;
+}
+
+.report_button {
+    width: 60px;
+    padding: 2px;
+    background-color: #428bca;
+    border-color: #357ebd;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    font-weight: 900;
+    font-size: 16px;
+}

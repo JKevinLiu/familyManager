@@ -1,9 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Title</title>
-</head>
-<body>
-    this is reportinfo!
-</body>
-</html>
+<div ng-controller="reportController" class="report_panel">
+    <div height="80" class="report_title">
+        <h1>消费统计</h1>
+    </div>
+
+    <span style="color: red;padding-top: 5px">近6月消费如下：
+         <a href="#nav/main">不准确？</a>
+    </span>
+    <div>
+        <canvas id="canvas"></canvas>
+
+        <div id="show_num"></div>
+    </div>
+</div>

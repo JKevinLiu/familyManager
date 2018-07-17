@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service(interfaceClass = PayMonthService.class)
@@ -39,11 +40,25 @@ public class PayMonthServiceImpl implements PayMonthService {
     @Override
     public List<PayMonth> getUserLastHalfYearPayMonth(int userId) {
         Calendar calendar = Calendar.getInstance();
-        String endYearMonth = calendar.get(Calendar.YEAR) + "" + ((calendar.get(Calendar.MONTH)+1) < 10? "0"+(calendar.get(Calendar.MONTH)+1):(calendar.get(Calendar.MONTH)+1));
+        int endYear = calendar.get(Calendar.YEAR);
+        int endMonth = calendar.get(Calendar.MONTH);
 
-        calendar.set(Calendar.MONTH, -6);
-        String startYearMonth = calendar.get(Calendar.YEAR) + "" + ((calendar.get(Calendar.MONTH)+1) < 10? "0"+(calendar.get(Calendar.MONTH)+1):(calendar.get(Calendar.MONTH)+1));
+        String endYearMonth = endYear+"";
+        if(endMonth < 10){
+            endYearMonth += "0";
+        }
+        endYearMonth += endMonth;
 
+        calendar.setTime(new Date());
+        calendar.add(Calendar.MONTH, -5);
+        int startYear = calendar.get(Calendar.YEAR);
+        int startMonth = calendar.get(Calendar.MONTH);
+
+        String startYearMonth = startYear+"";
+        if(startMonth < 10){
+            startYearMonth += "0";
+        }
+        startYearMonth += startMonth;
         List<PayMonth> payMonthList = payMonthMapper.getPayMonthByUserIdAndYearMonth(userId, Integer.parseInt(startYearMonth), Integer.parseInt(endYearMonth));
         return payMonthList;
     }
