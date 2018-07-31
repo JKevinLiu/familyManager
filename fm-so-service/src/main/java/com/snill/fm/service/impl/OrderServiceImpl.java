@@ -61,6 +61,7 @@ public class OrderServiceImpl implements OrderService {
         Calendar calendar = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = df.format(calendar.getTime());
+        int yearMonth = Integer.parseInt(date.substring(0,4));
 
         if(order.getId() != 0){
             List<OrderItem> updateOrderItemList = new ArrayList<>();
@@ -75,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
                     updateOrderItemList.add(item);
                 }
             });
-
+            order.setYearMonth(yearMonth);
             orderMapper.update(order);
 
             if(updateOrderItemList.size() > 0){
@@ -102,5 +103,10 @@ public class OrderServiceImpl implements OrderService {
     public void delete(Integer id) {
         orderItemMapper.deleteOrderItemByOrderId(id);
         orderMapper.delete(id);
+    }
+
+    @Override
+    public List<Order> getOrderByUserIdAndYearMonth(int userId, int yearMonth) {
+        return orderMapper.getOrderByUserIdAndYearMonth(userId, yearMonth);
     }
 }

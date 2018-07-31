@@ -14,6 +14,7 @@ public class Order implements Serializable{
     private String createDate;
     private int deleted;
     private int totalPrice;
+    private int yearMonth;
 
     public int getId() {
         return id;
@@ -69,5 +70,13 @@ public class Order implements Serializable{
 
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public int getYearMonth() {
+        return yearMonth;
+    }
+
+    public void setYearMonth(int yearMonth) {
+        this.yearMonth = yearMonth;
     }
 }

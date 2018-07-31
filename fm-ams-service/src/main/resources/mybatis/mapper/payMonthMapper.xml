@@ -44,7 +44,7 @@
         pay_month
         (yearmonth, total_price, user_id, username)
         VALUES
-        (#{yearMonth}, #{totalPice}, #{userId}, #{username})
+        (#{yearMonth}, #{totalPrice}, #{userId}, #{username})
     </insert>
 
 
@@ -53,7 +53,7 @@
         pay_month
         SET
         yearmonth = #{yearMonth},
-        total_price = #{totalPice},
+        total_price = #{totalPrice},
         user_id = #{userId},
         username = #{username}
         WHERE

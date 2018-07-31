@@ -6,27 +6,29 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="commons-api" />
         <module name="fm-ams-service" />
         <module name="fm-ams-service-api" />
         <module name="fm-base-service" />
         <module name="fm-base-service-api" />
         <module name="fm-so-service" />
         <module name="fm-so-service-api" />
+        <module name="fm-soa" />
         <module name="fm-web" />
         <module name="mapper" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
+      <module name="commons-api" target="1.8" />
       <module name="fm" target="1.8" />
       <module name="fm-ams-service" target="1.8" />
       <module name="fm-ams-service-api" target="1.8" />
       <module name="fm-base-service" target="1.8" />
       <module name="fm-base-service-api" target="1.8" />
-      <module name="fm-mapper" target="1.5" />
       <module name="fm-so-service" target="1.8" />
       <module name="fm-so-service-api" target="1.8" />
+      <module name="fm-soa" target="1.8" />
       <module name="fm-web" target="1.8" />
-      <module name="mapper" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

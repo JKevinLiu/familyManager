@@ -2,12 +2,14 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commons-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fm-ams-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fm-ams-service-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fm-base-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fm-base-service-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fm-so-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fm-so-service-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/fm-soa" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fm-web" charset="UTF-8" />
   </component>
 </project>

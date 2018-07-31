@@ -10,6 +10,7 @@
         <result property="userId" column="user_id" jdbcType="INTEGER" />
         <result property="username" column="username" jdbcType="VARCHAR" />
         <result property="totalPrice" column="total_price" jdbcType="INTEGER" />
+        <result property="yearMonth" column="yearmonth" jdbcType="INTEGER" />
     </resultMap>
 
 
@@ -21,6 +22,7 @@
         <result property="userId" column="o_user_id" jdbcType="INTEGER" />
         <result property="username" column="o_username" jdbcType="VARCHAR" />
         <result property="totalPrice" column="o_total_price" jdbcType="INTEGER" />
+        <result property="yearMonth" column="o_year_month" jdbcType="INTEGER" />
 
         <!-- 多对多关联映射：collection -->
         <collection property="orderItemList" ofType="com.snill.fm.bean.OrderItem" >
@@ -39,7 +41,7 @@
 
     <select id="getSimpleOrderList" resultMap="SimpleResultMap">
         select
-        id, user_id, username, create_date, total_price
+        id, user_id, username, create_date, total_price, yearmonth
         from `fm-so`.`order`
         where deleted = 0
         order by create_date desc
@@ -48,7 +50,7 @@
     <select id="getOrderById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
         select
         o.id as o_id, o.user_id as o_user_id, o.username as o_username,
-        o.create_date as o_create_date,o.deleted as o_deleted, o.total_price as o_total_price,
+        o.create_date as o_create_date,o.deleted as o_deleted, o.total_price as o_total_price,o.yearmonth as o_year_month,
         oi.id as oi_id, oi.order_id as oi_order_id, oi.price as oi_price, oi.create_date as oi_create_date,
         oi.deleted as oi_deleted, oi.product_id as oi_product_id, oi.product_name as oi_product_name,
         oi.product_code as oi_product_code, oi.description as oi_description
@@ -59,10 +61,25 @@
         and oi.deleted = 0
     </select>
 
+    <select id="getOrderByUserIdAndYearMonth" resultMap="BaseResultMap" >
+        select
+        o.id as o_id, o.user_id as o_user_id, o.username as o_username,
+        o.create_date as o_create_date,o.deleted as o_deleted, o.total_price as o_total_price,o.yearmonth as o_year_month,
+        oi.id as oi_id, oi.order_id as oi_order_id, oi.price as oi_price, oi.create_date as oi_create_date,
+        oi.deleted as oi_deleted, oi.product_id as oi_product_id, oi.product_name as oi_product_name,
+        oi.product_code as oi_product_code, oi.description as oi_description
+        from `fm-so`.`order` o left join `fm-so`.`order_item` oi on o.id = oi.order_id
+        where 1 =1
+        and o.id = #{userId}
+        and o.yearmonth = #{yearMonth}
+        and o.deleted = 0
+        and oi.deleted = 0
+    </select>
+
     <select id="getOrderList" resultMap="BaseResultMap"  >
         select
         o.id as o_id, o.user_id as o_user_id, o.username as o_username,
-        o.create_date as o_create_date,o.deleted as o_deleted, o.total_price as o_total_price,
+        o.create_date as o_create_date,o.deleted as o_deleted, o.total_price as o_total_price,o.yearmonth as o_year_month,
         oi.id as oi_id, oi.order_id as oi_order_id, oi.price as oi_price, oi.create_date as oi_create_date,
         oi.deleted as oi_deleted, oi.product_id as oi_product_id, oi.product_name as oi_product_name,
         oi.product_code as oi_product_code, oi.description as oi_description
@@ -75,9 +92,9 @@
     <insert id="add" parameterType="com.snill.fm.bean.Order" useGeneratedKeys="true" keyProperty="id" >
         INSERT INTO
         `fm-so`.`order`
-        (user_id, username, create_date, total_price)
+        (user_id, username, create_date, total_price, yearmonth)
         VALUES
-        (#{userId}, #{username}, #{createDate}, #{totalPrice})
+        (#{userId}, #{username}, #{createDate}, #{totalPrice}, #{yearMonth})
     </insert>
 
 
@@ -88,7 +105,8 @@
         user_id = #{userId},
         username = #{username},
         create_date = #{createDate},
-        total_price = #{totalPrice}
+        total_price = #{totalPrice},
+        yearmonth = #{yearMonth}
         WHERE
         id = #{id}
     </update>

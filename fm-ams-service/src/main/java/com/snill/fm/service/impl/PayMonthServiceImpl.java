@@ -34,7 +34,13 @@ public class PayMonthServiceImpl implements PayMonthService {
         if(payMonthList.size() > 1){
             //数据异常
         }
-        return payMonthList.get(0);
+
+        if(payMonthList != null && payMonthList.size() > 0){
+            return payMonthList.get(0);
+        }
+
+        return null;
+
     }
 
     @Override
@@ -65,7 +71,7 @@ public class PayMonthServiceImpl implements PayMonthService {
 
     @Override
     public void save(PayMonth payMonth) {
-        Assert.isNull(payMonth, "数据为空！");
+        Assert.notNull(payMonth, "数据为空！");
         if(payMonth.getId() == 0){
             payMonthMapper.add(payMonth);
         }else{

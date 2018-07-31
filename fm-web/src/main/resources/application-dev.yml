@@ -11,3 +11,11 @@ spring:
       port: 20880
     scan: com.snill.fm
     timeout: 10000
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094
+      retries: 0
+      batch-size: 65536
+      buffer-memory: 524288
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.snill.fm.kafka.EncodeingKafka

@@ -17,6 +17,25 @@ mainApp.controller("initController", ["$rootScope", "userService", function($roo
 
 
 /**
+ * mainController控制器
+ */
+mainApp.controller("mainController", ["$scope","$http", "$rootScope", function($scope, $http, $rootScope) {
+    $scope.calcParams = {
+        userId : $rootScope.user.id
+    };
+
+    $scope.calc = function(){
+        $http.post("/calc/lastPay",angular.toJson($scope.calcParams)).then(
+            function(res){
+                alert(res.data.result);
+            },function(res){
+                alert(res.data.result);
+            }
+        );
+    };
+}]);
+
+/**
  * order控制器
  */
 mainApp.controller("orderController", ["$scope","$http", "$location", function($scope, $http, $location) {
