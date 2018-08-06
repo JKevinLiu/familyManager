@@ -2,6 +2,7 @@ package com.snill.fm.calc;
 
 import com.alibaba.dubbo.common.utils.ConcurrentHashSet;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.codingapi.tx.annotation.TxTransaction;
 import com.snill.fm.bean.Order;
 import com.snill.fm.bean.PayMonth;
 import com.snill.fm.bean.User;
@@ -23,6 +24,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Component
+@TxTransaction(isStart=true)
 public class CalcSOAService {
     private static final Logger log = LoggerFactory.getLogger(CalcSOAService.class);
 
@@ -77,7 +79,22 @@ public class CalcSOAService {
                                 totalPrice += order.getTotalPrice();
                             }
                             curPayMonth.setTotalPrice(totalPrice);
+
+
+                            /**
+                             * 此处需要分布式事务处理。
+                             */
+
+                            //保存计算值入库
                             payMonthService.save(curPayMonth);
+
+                            if(userId >= 0){
+                                throw new RuntimeException("模拟异常！");
+                            }
+
+                            //写日志
+                            orderService.logCalc(yearMonth, userId);
+
                         }else{
                             return;
                         }

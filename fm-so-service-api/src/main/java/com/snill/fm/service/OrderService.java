@@ -12,4 +12,6 @@ public interface OrderService {
     public void save(Order order);
     public void delete(Integer id);
     public List<Order> getOrderByUserIdAndYearMonth(int userId, int yearMonth);
+
+    public void logCalc(int yearMonth, int userId);
 }

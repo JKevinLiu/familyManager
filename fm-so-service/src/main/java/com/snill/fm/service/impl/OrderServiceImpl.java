@@ -5,7 +5,9 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.snill.fm.bean.OrderItem;
+import com.snill.fm.bean.OrderLog;
 import com.snill.fm.mapper.OrderItemMapper;
+import com.snill.fm.mapper.OrderLogMapper;
 import com.snill.fm.mapper.OrderMapper;
 import com.snill.fm.page.ReqPage;
 import com.snill.fm.service.OrderService;
@@ -28,6 +30,8 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
     @Autowired
     private OrderItemMapper orderItemMapper;
+    @Autowired
+    private OrderLogMapper orderLogMapper;
 
     @Override
     @Cacheable(value="orderCache", keyGenerator = "keyGenerator")
@@ -108,5 +112,21 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getOrderByUserIdAndYearMonth(int userId, int yearMonth) {
         return orderMapper.getOrderByUserIdAndYearMonth(userId, yearMonth);
+    }
+
+    @Override
+    public void logCalc(int yearMonth, int userId) {
+        Calendar calendar = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = df.format(calendar.getTime());
+
+        OrderLog log = new OrderLog();
+
+        log.setYearMonth(yearMonth);
+        log.setUserId(userId);
+        log.setCreateDate(date);
+
+        orderLogMapper.add(log);
+
     }
 }
