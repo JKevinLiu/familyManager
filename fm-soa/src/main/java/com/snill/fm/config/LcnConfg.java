@@ -13,9 +13,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-@Configuration
-@EnableTransactionManagement(proxyTargetClass=true)
-@ComponentScan(basePackages={"com.codingapi.tx.*","com.snill.fm.*"})
+//@Configuration
+//@EnableTransactionManagement(proxyTargetClass=true)
+//@ComponentScan(basePackages={"com.codingapi.tx.*","com.snill.fm.*"})
 class LcnConfig implements TxManagerTxUrlService {
 
     @Autowired

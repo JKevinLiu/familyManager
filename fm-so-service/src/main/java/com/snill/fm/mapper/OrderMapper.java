@@ -1,6 +1,5 @@
 package com.snill.fm.mapper;
 
-import com.github.pagehelper.Page;
 import com.snill.fm.bean.Order;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

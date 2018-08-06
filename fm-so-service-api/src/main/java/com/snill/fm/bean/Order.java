@@ -1,7 +1,6 @@
 package com.snill.fm.bean;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
 
 public class Order implements Serializable{

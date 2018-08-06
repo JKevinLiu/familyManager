@@ -80,12 +80,10 @@ public class Permission implements Serializable, org.apache.shiro.authz.Permissi
             return false;
         }
 
-
         if(p instanceof Permission){
             Permission auth = (Permission)p;
             return this.code.equals(auth.getCode());
         }
-
 
         return false;
     }

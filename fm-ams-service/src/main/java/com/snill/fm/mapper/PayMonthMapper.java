@@ -11,7 +11,6 @@ public interface PayMonthMapper {
     public PayMonth getPayMonthById(int id);
     public List<PayMonth> getPayMonthByUserId(int userId);
     public List<PayMonth> getPayMonthByUserIdAndYearMonth(@Param("userId") int userId, @Param("startYearMonth")int startYearMonth, @Param("endYearMonth")int endYearMonth);
-
     public void add(PayMonth payMonth);
     public void update(PayMonth payMonth);
     public void delete(int id);

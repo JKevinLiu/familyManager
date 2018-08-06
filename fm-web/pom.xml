@@ -33,6 +33,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
@@ -60,6 +61,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <dependency>
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
@@ -78,7 +80,6 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.15</version>
         </dependency>
-
 
         <dependency>
             <groupId>io.dubbo.springboot</groupId>

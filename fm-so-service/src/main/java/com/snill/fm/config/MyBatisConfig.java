@@ -104,8 +104,7 @@ public class MyBatisConfig {
         txMap.put("query*", readOnlyTx);
         source.setNameMap(txMap);
 
-        TransactionInterceptor txAdvice = new TransactionInterceptor(transactionManager, source);
-        return txAdvice;
+        return new TransactionInterceptor(transactionManager, source);
     }
 
     @Bean

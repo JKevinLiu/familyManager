@@ -46,9 +46,4 @@ public class DateUtils {
         }
         return list;
     }
-
-    public static void main(String[] args) {
-        List<Integer> list = DateUtils.getLastSIXMonth();
-        System.out.println();
-    }
 }

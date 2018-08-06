@@ -10,14 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>fm-so-service-api</artifactId>
-    <packaging>jar</packaging>
 
     <dependencies>
-        <dependency>
-            <groupId>com.snill</groupId>
-            <artifactId>fm-base-service-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>

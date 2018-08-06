@@ -19,13 +19,11 @@ public class UserController {
     @Reference
     private UserService userService;
 
-
     /**
      * 根据ID查询用户
      * @param id
      * @return
      */
-    //   http://localhost:8080/user/1
     @RequestMapping(value = "user/{id}", method = RequestMethod.GET)
     public ResponseEntity<JsonResult> getUserById (@PathVariable(value = "id") Integer id){
         JsonResult r = new JsonResult();

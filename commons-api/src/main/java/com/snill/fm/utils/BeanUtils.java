@@ -26,6 +26,7 @@ public class BeanUtils {
         }
         return bb;
     }
+
     /**
      * 字节数组转为Object对象
      *

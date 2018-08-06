@@ -1,10 +1,8 @@
 package com.snill.fm;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.kafka.annotation.KafkaListener;
 
 @SpringBootApplication
 public class WebApplication {

@@ -36,7 +36,6 @@ public class MyBatisConfig {
         return DruidDataSourceBuilder.create().build();
     }
 
-
     // 提供SqlSeesion
     @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
@@ -50,7 +49,6 @@ public class MyBatisConfig {
 
         return sqlSessionFactoryBean.getObject();
     }
-
 
     /**
      * dubbo集成springAOP事务修改
@@ -90,8 +88,7 @@ public class MyBatisConfig {
         txMap.put("query*", readOnlyTx);
         source.setNameMap(txMap);
 
-        TransactionInterceptor txAdvice = new TransactionInterceptor(transactionManager, source);
-        return txAdvice;
+        return new TransactionInterceptor(transactionManager, source);
     }
 
     @Bean

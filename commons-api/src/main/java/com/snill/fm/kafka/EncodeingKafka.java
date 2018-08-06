@@ -1,10 +1,9 @@
 package com.snill.fm.kafka;
 
-
 import java.util.Map;
-
 import com.snill.fm.utils.BeanUtils;
 import org.apache.kafka.common.serialization.Serializer;
+
 public class EncodeingKafka implements Serializer<Object> {
     @Override
     public void configure(Map configs, boolean isKey) {

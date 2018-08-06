@@ -9,7 +9,6 @@ public interface PayMonthService {
     public List<PayMonth> getPayMonthByUserId(int userId);
     public PayMonth getPayMonthByUserIdAndYearMonth(int userId, int yearMonth);
     public List<PayMonth> getUserLastHalfYearPayMonth(int userId);
-
     public void save(PayMonth payMonth);
     public void delete(int id);
 }
